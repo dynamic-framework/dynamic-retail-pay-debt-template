@@ -1,0 +1,11 @@
+@import "~@dynamic-framework/ui/src/style/abstracts/+import";
+
+.payment-alternatives {
+  .m-quick-action-button {
+    --#{$prefix}m-quick-action-button-border-top: 0;
+    --#{$prefix}m-quick-action-button-border-right: 0;
+    --#{$prefix}m-quick-action-button-border-left: 0;
+    --#{$prefix}m-quick-action-button-border-radius: 0;
+    box-shadow: none;
+  }
+}

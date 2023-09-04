@@ -1,0 +1,86 @@
+{
+  "title": "Pagar",
+  "paymentTitle": "Detalles de facturación",
+  "paymentDate": "Pagar hasta",
+  "minimumPayment": "Monto a pagar",
+  "nextPayment": "Próximo pago",
+  "payFromLabel": "Pagar desde",
+  "available": "{amount} disponible",
+  "noDate": "No hay fecha de pago registrada",
+  "share": "Compartir",
+  "paymentNote": "Pago de crédito",
+  "download": "Descargar",
+  "currencyInput": {
+    "placeholder": "Monto",
+    "remainingValid": "{remaining} restante",
+    "remainingInvalid": "{amount} sobrepasa lo disponible",
+    "insufficient": "Fondos insuficientes"
+  },
+  "shortcuts": {
+    "automaticDebt": {
+      "title": "Débito automático",
+      "subtext": "Este pago se aplicará mensualmente el día que se genera la facturación"
+    },
+    "other": "Otro",
+    "minimum": "Minimo",
+    "amount": "Monto",
+    "paymentAlternatives": "Otras alternativas de pago",
+    "total": "Pago total"
+  },
+  "paymentAlternatives": {
+    "subtext": "Si no puedes pagar en este momento"
+  },
+  "button": {
+    "pay": "Pagar",
+    "cancel": "Cancelar",
+    "retry": "Reintentar",
+    "otherPayment": "Realizar otro pago",
+    "authorize": "Autorizar",
+    "suspend": "Suspender"
+  },
+  "modal": {
+    "automaticDebt": {
+      "onTitle": "Débito automático",
+      "onBody": "Recuerda el debito se realizara aproximadamente cada 18 del mes de tu Cuenta ··· {accountId}",
+      "onAuthorize": "¿Deseas autorizar la programación del debito automático?",
+      "offTitle": "Suspender débito automático",
+      "offBody": "Recuerda que tienes activa la opcion de débito automático de la Cuenta ··· {accountId}",
+      "offAuthorize": "¿Deseas suspender el servicio de débito automático?"
+    },
+    "paymentAlternatives": {
+      "skip": "Saltar próxima cuota",
+      "skipLabel": "Esta opción permite solicitar períodos de gracia",
+      "flexible": "Rediferir cuotas",
+      "flexibleLabel": "Esta opción permite modificar el número de cuotas para pago",
+      "renegotiate": "Renegociar deuda",
+      "renegotiateLabel": "Esta opción permite establecer un acuerdo de pago"
+    },
+    "pay": {
+      "title": "¿Pagar {amount}?",
+      "minimum": "Estás realizando el pago mínimo desde tu Cuenta <b>··· {mask}.</b>",
+      "other": "Estás pagando otro monto desde tu Cuenta <b>··· {mask}.</b>",
+      "total": "Estás realizando el pago total de tu deuda desde tu Cuenta <b>··· {mask}.</b>",
+      "instantly": "Este pago será instantáneo.",
+      "autoDebt": "Y autorizando el debito automático a partir del proximo mes."
+    }
+  },
+  "toast": {
+    "required": "Selecciona un monto para pagar",
+    "overpay": "Estás pagando más de lo facturado",
+    "insufficient": "No tienes fondos suficientes para pagar esta cantidad"
+  },
+  "result": {
+    "paySuccess": "Pago exitoso",
+    "payFailed": "Pago fallido",
+    "payErrorMessage": "We couldn’t complete your payment due to {message}",
+    "errorSolution": "Please {solution}",
+    "moneyPaid": "Valor pagado",
+    "paidTo": "Destinatario",
+    "transactionId": "Número transacción",
+    "timeDate": "Fecha y hora",
+    "terms": {
+      "text": "Todas tus transacciones son hechas de forma segura.",
+      "link": "Términos y condiciones."
+    }
+  }
+}

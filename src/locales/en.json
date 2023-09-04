@@ -1,0 +1,86 @@
+{
+  "title": "Make payment",
+  "paymentTitle": "Payment info",
+  "paymentDate": "Payment date",
+  "minimumPayment": "Payment due",
+  "nextPayment": "Next payment date",
+  "payFromLabel": "Pay From",
+  "available": "{amount} available",
+  "noDate": "No payments due",
+  "paymentNote": "Loan Repayment",
+  "share": "Share",
+  "download": "Download",
+  "currencyInput": {
+    "placeholder": "Amount",
+    "remainingValid": "{remaining} remaining",
+    "remainingInvalid": "{amount} over limit",
+    "insufficient": "Insufficient funds"
+  },
+  "shortcuts": {
+    "automaticDebt": {
+      "title": "Pre-authorized Payment",
+      "subtext": "This payment will repeat monthly on the date the invoice is created"
+    },
+    "other": "Other",
+    "minimum": "Minimum",
+    "amount": "Amount",
+    "paymentAlternatives": "Other Payment Alternatives",
+    "total": "Total"
+  },
+  "paymentAlternatives": {
+    "subtext": "If you can’t make the payment right now"
+  },
+  "button": {
+    "pay": "Pay",
+    "cancel": "Cancel",
+    "retry": "Retry",
+    "otherPayment": "Other payment",
+    "authorize": "Authorize",
+    "suspend": "Pause"
+  },
+  "modal": {
+    "automaticDebt": {
+      "onTitle": "Pre-authorized Payment",
+      "onBody": "This payment will repeat on or around the 18th of each month from your Account ··· {accountId}",
+      "onAuthorize": "Do you want to authorize this recurring automatic bill payment?",
+      "offTitle": "Pause pre-authorized payments",
+      "offBody": "You have a pre-authorized payment from your Account ··· {accountId}",
+      "offAuthorize": "Do you want to pause your pre-authorized payments?"
+    },
+    "paymentAlternatives": {
+      "skip": "Skip installment",
+      "skipLabel": "2 grace months remaining",
+      "flexible": "Flexible payment",
+      "flexibleLabel": "Pay in installments",
+      "renegotiate": "Renegotiate debt",
+      "renegotiateLabel": "Pay your future total"
+    },
+    "pay": {
+      "title": "Pay {amount}?",
+      "minimum": "You are making the minimum payment from your Account <b>··· {mask}.</b>",
+      "other": "You are making a payment from your Account <b>··· {mask}.</b>",
+      "total": "You are paying the remainder of your outstanding balance from your Account <b>··· {mask}.</b>",
+      "instantly": "This payment will be processed instantly.",
+      "autoDebt": "And authorizing pre-authorized payments starting next month."
+    }
+  },
+  "toast": {
+    "required": "A payment amount is required",
+    "overpay": "You are paying more than the billed amount",
+    "insufficient": "You don’t have enough funds to pay this amount"
+  },
+  "result": {
+    "paySuccess": "Payment successful",
+    "payFailed": "Payment failure",
+    "payErrorMessage": "We couldn’t complete your payment due to {message}",
+    "errorSolution": "Please {solution}",
+    "moneyPaid": "Money paid",
+    "paidTo": "Paid to",
+    "transactionId": "Transaction ID",
+    "timeDate": "Time & Date",
+    "terms": {
+      "text": "All your transactions are safe and fast.",
+      "link": "Terms & Conditions."
+    }
+  }
+}
