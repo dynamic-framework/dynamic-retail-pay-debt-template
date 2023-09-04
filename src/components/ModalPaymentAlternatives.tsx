@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import {
-  MButton,
-  MModal,
-  MQuickActionButton,
+  DButton,
+  DModal,
+  DQuickActionButton,
   useModalContext,
 } from '@dynamic-framework/ui-react';
 
@@ -11,7 +11,7 @@ export default function ModalPaymentAlternatives() {
   const { closeModal } = useModalContext();
 
   return (
-    <MModal
+    <DModal
       name="paymentAlternatives"
       isCentered
       isStatic
@@ -20,28 +20,28 @@ export default function ModalPaymentAlternatives() {
         slot="body"
       >
         <div className="payment-alternatives m-4 mb-0 d-flex flex-column">
-          <MQuickActionButton
+          <DQuickActionButton
             line1={t('modal.paymentAlternatives.skip')}
             line2={t('modal.paymentAlternatives.skipLabel')}
           />
-          <MQuickActionButton
+          <DQuickActionButton
             line1={t('modal.paymentAlternatives.flexible')}
             line2={t('modal.paymentAlternatives.flexibleLabel')}
           />
-          <MQuickActionButton
+          <DQuickActionButton
             line1={t('modal.paymentAlternatives.renegotiate')}
             line2={t('modal.paymentAlternatives.renegotiateLabel')}
           />
         </div>
         <div className="m-4 d-flex justify-content-center">
-          <MButton
+          <DButton
             text={t('button.cancel')}
             theme="primary"
             isPill
-            onMClick={() => closeModal()}
+            onEventClick={() => closeModal()}
           />
         </div>
       </div>
-    </MModal>
+    </DModal>
   );
 }

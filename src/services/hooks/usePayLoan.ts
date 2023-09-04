@@ -3,26 +3,22 @@ import { useCallback, useState } from 'react';
 import { PaymentRepository } from '@modyo-dynamic/modyo-service-retail';
 
 import { useTranslation } from 'react-i18next';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
 
-import errorHandler from '../utils/errorHandler';
-import {
-  getAmountUsed,
-  getProductToPay,
-  getSelectedProduct,
-} from '../store/selectors';
-import { setIsPaid, setResult } from '../store/slice';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
+import { getAccountToPay, getAmountUsed, getSelectedAccount } from '../../store/selectors';
+import { setIsPaid, setResult } from '../../store/slice';
+import errorHandler from '../../utils/errorHandler';
 
-export default function usePayDebt() {
+export default function usePayLoan() {
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
-  const selectedProduct = useAppSelector(getSelectedProduct);
-  const productToPay = useAppSelector(getProductToPay);
+  const selectedAccount = useAppSelector(getSelectedAccount);
+  const accountToPay = useAppSelector(getAccountToPay);
   const amountUsed = useAppSelector(getAmountUsed);
   const { t } = useTranslation();
 
-  const depositAccountId = selectedProduct?.id.toString() || '';
-  const loanAccountId = productToPay?.id.toString() || '';
+  const depositAccountId = selectedAccount?.id.toString() || '';
+  const loanAccountId = accountToPay?.id.toString() || '';
   const amount = amountUsed;
   const notes = t('paymentNote');
 

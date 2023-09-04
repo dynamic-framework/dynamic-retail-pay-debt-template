@@ -2,13 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 
-import '@dynamic-framework/ui/dist/css/dynamic-ui.css';
-import '@dynamic-framework/ui-react/dist/css/dynamic-ui-react.css';
+import '@dynamic-framework/ui-react/dist/css/dynamic-ui-all.css';
 
 import {
   LiquidContextProvider,
   ModalContextProvider,
-  MToastContainer,
+  DToastContainer,
 } from '@dynamic-framework/ui-react';
 
 import './style/base.scss';
@@ -23,7 +22,7 @@ import ModalPaymentAlternatives from './components/ModalPaymentAlternatives';
 import ModalConfirmPayment from './components/ModalConfirmPayment';
 import ModalAutoDebt from './components/ModalAutoDebt';
 
-const root = ReactDOM.createRoot(document.getElementById('payDebt') as Element);
+const root = ReactDOM.createRoot(document.getElementById('payDebtTemplate') as Element);
 root.render(
   <React.StrictMode>
     <LiquidContextProvider>
@@ -37,7 +36,7 @@ root.render(
           }}
         >
           <App />
-          <MToastContainer />
+          <DToastContainer />
         </ModalContextProvider>
       </Provider>
     </LiquidContextProvider>

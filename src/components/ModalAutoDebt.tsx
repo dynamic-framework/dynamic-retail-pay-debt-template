@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import {
-  MButton,
-  MModal,
+  DButton,
+  DModal,
   ModalProps,
 } from '@dynamic-framework/ui-react';
 import { useMemo } from 'react';
-import { getSelectedProduct } from '../store/selectors';
+import { getSelectedAccount } from '../store/selectors';
 import { useAppSelector } from '../store/hooks';
 
 export default function ModalAutoDebt({
@@ -16,15 +16,15 @@ export default function ModalAutoDebt({
   },
 }: ModalProps) {
   const { t } = useTranslation();
-  const product = useAppSelector(getSelectedProduct);
-  const accountId = useMemo(() => product?.productNumber.slice(-3), [product]);
+  const account = useAppSelector(getSelectedAccount);
+  const accountId = useMemo(() => account?.accountNumber.slice(-3), [account]);
   return (
-    <MModal
+    <DModal
       name="autoDebt"
       isCentered
       isStatic
       showCloseButton
-      onMClose={() => closeModal()}
+      onEventClose={() => closeModal()}
     >
       <div slot="header">
         <h4 className="fw-bold">
@@ -44,25 +44,25 @@ export default function ModalAutoDebt({
         </div>
       </div>
       <div slot="footer">
-        <MButton
+        <DButton
           className="flex-1 d-grid"
           text={t('button.cancel')}
           isPill
           theme="secondary"
           variant="outline"
-          onMClick={() => closeModal()}
+          onEventClick={() => closeModal()}
         />
-        <MButton
+        <DButton
           className="flex-1 d-grid"
           text={isActive ? t('button.suspend') : t('button.authorize')}
           isPill
-          onMClick={() => {
+          onEventClick={() => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             onAccept(!isActive);
             closeModal();
           }}
         />
       </div>
-    </MModal>
+    </DModal>
   );
 }

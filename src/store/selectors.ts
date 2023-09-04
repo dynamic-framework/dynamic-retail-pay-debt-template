@@ -9,13 +9,13 @@ export const getIsPaid = createDraftSafeSelector(
   (widget) => widget.isPaid,
 );
 
-export const getProducts = createDraftSafeSelector(
+export const getAccounts = createDraftSafeSelector(
   getState,
-  (widget) => widget.products,
+  (widget) => widget.accounts,
 );
-export const getSelectedProduct = createDraftSafeSelector(
+export const getSelectedAccount = createDraftSafeSelector(
   getState,
-  (widget) => widget.selectedProduct,
+  (widget) => widget.selectedAccount,
 );
 
 export const getAmountUsed = createDraftSafeSelector(
@@ -23,9 +23,9 @@ export const getAmountUsed = createDraftSafeSelector(
   (widget) => widget.amountUsed ?? 0,
 );
 
-export const getProductToPay = createDraftSafeSelector(
+export const getAccountToPay = createDraftSafeSelector(
   getState,
-  (widget) => widget.productToPay,
+  (widget) => widget.accountToPay,
 );
 
 export const getDebt = createDraftSafeSelector(
