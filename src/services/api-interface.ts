@@ -67,6 +67,7 @@ export type ApiLoanDetails = {
   due: number;
   daysInArrears: number;
   daysLate: number;
+  dueSinceDate: string;
   installments: number;
   interest: {
     accrued: number;

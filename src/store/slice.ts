@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Transaction } from '@modyo-dynamic/modyo-service-retail';
-import { Account } from '../services/interface';
+import {
+  DepositAccount,
+  LoanAccount,
+  Transaction,
+} from '../services/interface';
 
 export type Debt = {
   minimumPayment: number;
@@ -11,9 +14,9 @@ export type Debt = {
 export type WidgetState = {
   isPaid?: boolean;
   debt: Debt;
-  accounts: Array<Account>;
-  selectedAccount?: Account;
-  accountToPay?: Account;
+  accounts: Array<DepositAccount>;
+  selectedAccount?: DepositAccount;
+  accountToPay?: LoanAccount;
   amountUsed?: number;
   result?: Transaction;
 };
@@ -35,10 +38,10 @@ const slice = createSlice({
     setIsPaid(state, action: PayloadAction<boolean>) {
       state.isPaid = action.payload;
     },
-    setAccounts(state, action: PayloadAction<Array<Account>>) {
+    setAccounts(state, action: PayloadAction<Array<DepositAccount>>) {
       state.accounts = action.payload;
     },
-    setSelectedAccount(state, action: PayloadAction<Account | undefined>) {
+    setSelectedAccount(state, action: PayloadAction<DepositAccount | undefined>) {
       state.selectedAccount = action.payload;
     },
     setAmountUsed(state, action: PayloadAction<number | undefined>) {
@@ -47,7 +50,7 @@ const slice = createSlice({
     setResult(state, action: PayloadAction<Transaction>) {
       state.result = action.payload;
     },
-    setAccountToPay(state, action: PayloadAction<Account | undefined>) {
+    setAccountToPay(state, action: PayloadAction<LoanAccount | undefined>) {
       state.accountToPay = action.payload;
     },
     setDebt(state, action: PayloadAction<Debt>) {

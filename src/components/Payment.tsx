@@ -9,7 +9,7 @@ import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Account } from '../services/interface';
+import { Account, DepositAccount } from '../services/interface';
 import { setSelectedAccount } from '../store/slice';
 import useDepositAccountsEffect from '../services/hooks/useDepositAccountsEffect';
 import {
@@ -39,12 +39,12 @@ export default function Payment() {
       amountAvailable,
     ],
   } = useFormatCurrency(
-    selectedAccount?.depositDetails?.balances.available || 0,
+    selectedAccount?.balanceAvailable || 0,
   );
 
   const dateToPay = useMemo(
-    () => accountToPay?.paymentDetails?.dueSinceDate,
-    [accountToPay?.paymentDetails?.dueSinceDate],
+    () => accountToPay?.dueSinceDate,
+    [accountToPay?.dueSinceDate],
   );
 
   return (
@@ -80,7 +80,7 @@ export default function Payment() {
               selectedOption={selectedAccount}
               options={accounts}
               onEventChange={({ detail: account }: CustomEvent<Account>) => {
-                dispatch(setSelectedAccount(account));
+                dispatch(setSelectedAccount(account as DepositAccount));
               }}
               hint={t('available', { amount: amountAvailable })}
             />

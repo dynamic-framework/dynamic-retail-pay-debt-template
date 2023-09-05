@@ -29,7 +29,7 @@ export default function PaymentPanel() {
   const {
     amount,
     setAmount,
-  } = usePaymentInput(selectedAccount?.availableBalance);
+  } = usePaymentInput(selectedAccount?.balanceAvailable);
   const [isAutoDebt, setIsAutoDebt] = useState(false);
   const [shortcut, setShortcut] = useState('');
 
@@ -60,7 +60,7 @@ export default function PaymentPanel() {
       openToast('toast.required');
     } else if (amount && amount > debt.totalPayment) {
       openToast('toast.overpay');
-    } else if (amount && selectedAccount && amount > selectedAccount.availableBalance) {
+    } else if (amount && selectedAccount && amount > selectedAccount.balanceAvailable) {
       openToast('toast.insufficient');
     } else {
       openModal('confirmPayment', {

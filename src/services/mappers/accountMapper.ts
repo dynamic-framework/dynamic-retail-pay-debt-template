@@ -22,6 +22,8 @@ export default function accountMapper(apiAccount: ApiAccount): Account {
       ...commonProps,
       baseType,
       balanceOwed: apiAccount.loanDetails?.balances.owed as number,
+      due: apiAccount.loanDetails?.due as number,
+      dueSinceDate: apiAccount.loanDetails?.dueSinceDate as string,
       balanceRemaining: apiAccount.loanDetails?.balances.remaining as number,
     };
   }
@@ -29,6 +31,7 @@ export default function accountMapper(apiAccount: ApiAccount): Account {
   return {
     ...commonProps,
     baseType,
+    accountingBalance: apiAccount.accountingBalance,
     balanceAvailable: apiAccount.depositDetails?.balances.available as number,
   };
 }

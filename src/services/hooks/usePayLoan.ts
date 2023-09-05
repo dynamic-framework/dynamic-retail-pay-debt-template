@@ -1,17 +1,18 @@
 import { useCallback, useState } from 'react';
-
-import { PaymentRepository } from '@modyo-dynamic/modyo-service-retail';
-
 import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getAccountToPay, getAmountUsed, getSelectedAccount } from '../../store/selectors';
-import { setIsPaid, setResult } from '../../store/slice';
+
+import { PaymentRepository } from '../repositories';
 import errorHandler from '../../utils/errorHandler';
+import { setIsPaid, setResult } from '../../store/slice';
 
 export default function usePayLoan() {
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
+  const abortController = new AbortController();
+
   const selectedAccount = useAppSelector(getSelectedAccount);
   const accountToPay = useAppSelector(getAccountToPay);
   const amountUsed = useAppSelector(getAmountUsed);
@@ -24,37 +25,23 @@ export default function usePayLoan() {
 
   const callback = useCallback(
     async () => {
-      const { perform } = PaymentRepository.pay(
-        depositAccountId,
-        loanAccountId,
-        amount,
-        notes,
-      );
       try {
         setLoading(true);
-        const data = await perform();
-        dispatch(setResult({
-          id: data.withdrawalId,
-          name: '',
-          date: new Date().toISOString(),
-          amount: amountUsed,
-          status: 'completed',
-        }));
+        const response = await PaymentRepository.payDebt(
+          depositAccountId,
+          loanAccountId,
+          amount,
+          notes,
+          { abortSignal: abortController.signal },
+        );
         setLoading(false);
+        dispatch(setResult(response));
         dispatch(setIsPaid(true));
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } catch (error: any) {
+      } catch (error) {
         errorHandler(error);
-        dispatch(setResult({
-          id: '0',
-          name: '',
-          date: new Date().toISOString(),
-          amount: amountUsed,
-          status: 'failed',
-        }));
       }
     },
-    [amount, amountUsed, depositAccountId, dispatch, loanAccountId, notes],
+    [abortController.signal, amount, depositAccountId, dispatch, loanAccountId, notes],
   );
 
   return {
