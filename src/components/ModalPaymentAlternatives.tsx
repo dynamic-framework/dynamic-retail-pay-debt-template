@@ -13,6 +13,7 @@ export default function ModalPaymentAlternatives() {
   return (
     <DModal
       name="paymentAlternatives"
+      innerClass="d-block"
       isCentered
       isStatic
     >

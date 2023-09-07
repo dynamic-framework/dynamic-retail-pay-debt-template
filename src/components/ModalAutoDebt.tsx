@@ -24,6 +24,7 @@ export default function ModalAutoDebt({
       isCentered
       isStatic
       showCloseButton
+      innerClass="d-block"
       onEventClose={() => closeModal()}
     >
       <div slot="header">

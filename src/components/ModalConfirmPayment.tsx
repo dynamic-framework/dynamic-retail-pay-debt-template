@@ -62,6 +62,7 @@ export default function ModalConfirmPayment({
       isCentered
       isStatic
       showCloseButton
+      innerClass="d-block"
       onEventClose={() => closeModal()}
     >
       <div slot="header">
