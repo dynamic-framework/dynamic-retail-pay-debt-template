@@ -50,7 +50,7 @@ export default function Payment() {
   return (
     <div className="p-3 bg-white rounded shadow-sm">
       <h6 className="text-gray-700 fw-bold pb-3">{t('paymentTitle')}</h6>
-      {(!accountToPay || !accounts) && <SkeletonLoader />}
+      {(!accountToPay || !accounts.length) && <SkeletonLoader />}
       {accountToPay && (
         <>
           <div className="d-flex flex-column gap-2 bg-indigo-soft p-3 mb-3 rounded-1">
