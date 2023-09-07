@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { AccountRepository } from '../repositories';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getAccounts } from '../../store/selectors';
-import { setAccounts } from '../../store/slice';
+import { setAccounts, setSelectedAccount } from '../../store/slice';
 import errorHandler from '../../utils/errorHandler';
 import { DepositAccount } from '../interface';
 
@@ -19,6 +19,7 @@ export default function useDepositAccountsEffect() {
         setLoading(true);
         const data = await AccountRepository.list({ abortSignal: abortController.signal });
         dispatch(setAccounts(data as Array<DepositAccount>));
+        dispatch(setSelectedAccount(data[0] as DepositAccount));
       } catch (error) {
         errorHandler(error);
       }
