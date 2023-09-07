@@ -2,7 +2,6 @@ import type { GenericAbortSignal } from 'axios';
 
 import ApiClient from '../ApiClient';
 import accountMapper from '../mappers/accountMapper';
-import { AccountBaseType, ApiAccountTypeConfig } from '../config';
 
 import type { ApiAccount } from '../api-interface';
 import { LoanAccount } from '../interface';
@@ -13,32 +12,22 @@ export async function list(config: { abortSignal: GenericAbortSignal }) {
     method: 'GET',
     signal: config.abortSignal,
     headers: {
-      Prefer: 'code=200, example=All',
+      Prefer: 'code=200, example="CURRENT_ACCOUNT,REGULAR_SAVINGS"',
     },
   });
-
-  return data
-    // we make sure to only use accounts we can handle
-    .filter((apiAccount: ApiAccount) => (
-      Object.keys(ApiAccountTypeConfig).includes(apiAccount.accountType)
-    ))
-    // and we transform the account into the type of account that the widge uses
-    .map((apiAccount: ApiAccount) => accountMapper(apiAccount));
+  return data.map((apiAccount: ApiAccount) => accountMapper(apiAccount));
 }
 
 export async function get(
-  type: AccountBaseType,
-  loanId: string,
   config: { abortSignal: GenericAbortSignal },
 ) {
   const { data } = await ApiClient.request<ApiAccount>({
-    url: `/${type}/account`,
+    url: '/loan/account',
     method: 'GET',
     signal: config.abortSignal,
     headers: {
-      Prefer: `code=200, example=${loanId}`,
+      Prefer: 'code=200',
     },
   });
-
   return accountMapper(data) as LoanAccount;
 }

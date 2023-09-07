@@ -4,8 +4,6 @@ import { useAppDispatch } from '../../store/hooks';
 import { setAccountToPay, setDebt } from '../../store/slice';
 import errorHandler from '../../utils/errorHandler';
 import { AccountRepository } from '../repositories';
-import getAccountIdQueryString from '../utils/getAccountIdQueryString';
-import { AccountBaseType } from '../config';
 
 export default function useLoanInfo() {
   const [loading, setLoading] = useState(false);
@@ -17,13 +15,7 @@ export default function useLoanInfo() {
     (async () => {
       try {
         setLoading(true);
-        const loanQueryId = getAccountIdQueryString();
-        if (!loanQueryId) {
-          return () => {};
-        }
         const loanToPay = await AccountRepository.get(
-          AccountBaseType.Loan,
-          loanQueryId,
           { abortSignal: abortController.signal },
         );
         const debt = {
