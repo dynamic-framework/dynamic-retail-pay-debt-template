@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { useAppSelector } from '../store/hooks';
 import {
   getAccountToPay,
+  getAmountUsed,
   getResult,
 } from '../store/selectors';
 import errorHandler from '../utils/errorHandler';
@@ -19,12 +20,14 @@ import errorHandler from '../utils/errorHandler';
 export default function PaymentResult() {
   const accountToPay = useAppSelector(getAccountToPay);
   const result = useAppSelector(getResult);
+  const amountUsed = useAppSelector(getAmountUsed);
+
   const { t } = useTranslation();
   const { shareRef, share } = useScreenshotWebShare();
   const { downloadRef, download } = useScreenshotDownload();
   const paymentDone = result?.status === 'completed';
 
-  const { values: [amountUsedFormatted] } = useFormatCurrency(result?.amount || 0);
+  const { values: [amountUsedFormatted] } = useFormatCurrency(amountUsed);
 
   const redirectToDashboard = () => {
     window.location.href = `${liquidParser.parse('{{site.url}}')}/${liquidParser.parse('{{vars.payments-path}}')}`;
@@ -68,7 +71,7 @@ export default function PaymentResult() {
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.transactionId')}</div>
-                  <div className="col-6 text-end">{result?.id}</div>
+                  <div className="col-6 text-end">{result?.repaymentId}</div>
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.timeDate')}</div>
@@ -94,7 +97,7 @@ export default function PaymentResult() {
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.transactionId')}</div>
-                  <div className="col-6 text-end">{result?.id}</div>
+                  <div className="col-6 text-end">{result?.repaymentId}</div>
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.timeDate')}</div>

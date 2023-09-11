@@ -32,7 +32,7 @@ export type LoanAccount = BaseAccount<AccountBaseType.Loan> & {
 export type Account = DepositAccount | LoanAccount;
 
 export type Transaction = {
-  id: string;
+  repaymentId: string;
   name: string;
   date: string;
   amount: number;

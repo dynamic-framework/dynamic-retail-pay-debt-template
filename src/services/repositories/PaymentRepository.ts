@@ -11,11 +11,17 @@ export async function payDebt(
   config: { abortSignal: GenericAbortSignal },
 ) {
   const { data } = await ApiClient.request<Transaction>({
-    url: 'accounts',
-    method: 'GET',
+    url: '/loan/repayment',
+    method: 'POST',
     signal: config.abortSignal,
     headers: {
-      Prefer: 'code=200, example=All',
+      Prefer: 'code=200',
+    },
+    data: {
+      depositAccountId,
+      loanAccountId,
+      amount,
+      notes,
     },
   });
 
