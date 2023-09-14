@@ -81,3 +81,11 @@ export type ApiLoanDetails = {
     };
   };
 };
+
+export type ApiTransaction = {
+  repaymentId: string;
+  name: string;
+  date: string;
+  amount: number;
+  status: string;
+};

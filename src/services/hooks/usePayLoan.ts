@@ -27,7 +27,7 @@ export default function usePayLoan() {
     async () => {
       try {
         setLoading(true);
-        const response = await PaymentRepository.payDebt(
+        const data = await PaymentRepository.payDebt(
           depositAccountId,
           loanAccountId,
           amount,
@@ -35,7 +35,7 @@ export default function usePayLoan() {
           { abortSignal: abortController.signal },
         );
         setLoading(false);
-        dispatch(setResult(response));
+        dispatch(setResult(data));
         dispatch(setIsPaid(true));
       } catch (error) {
         errorHandler(error);

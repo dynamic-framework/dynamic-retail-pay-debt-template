@@ -1,7 +1,8 @@
 import { GenericAbortSignal } from 'axios';
-import type { Transaction } from '../interface';
 
 import ApiClient from '../ApiClient';
+import { ApiTransaction } from '../api-interface';
+import transactionMapper from '../mappers/transactionMapper';
 
 export async function payDebt(
   depositAccountId: string,
@@ -10,7 +11,7 @@ export async function payDebt(
   notes: string,
   config: { abortSignal: GenericAbortSignal },
 ) {
-  const { data } = await ApiClient.request<Transaction>({
+  const { data } = await ApiClient.request<ApiTransaction>({
     url: '/loan/repayment',
     method: 'POST',
     signal: config.abortSignal,
@@ -25,5 +26,5 @@ export async function payDebt(
     },
   });
 
-  return data;
+  return transactionMapper(data);
 }
