@@ -81,20 +81,3 @@ export type ApiLoanDetails = {
     };
   };
 };
-
-export type ApiActivity = {
-  amount: number;
-  currencyCode: string;
-  id: string;
-  type: string;
-  description: string;
-  effectiveDate: string;
-  contact: {
-    id: string;
-    name: string;
-    bank: string;
-    image: string;
-    isFavorite: boolean;
-    accountNumber: string;
-  }
-};
