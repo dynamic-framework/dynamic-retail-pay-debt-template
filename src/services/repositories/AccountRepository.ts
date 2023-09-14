@@ -29,5 +29,5 @@ export async function get(
       Prefer: 'code=200',
     },
   });
-  return accountMapper(data) as LoanAccount;
+  return accountMapper(data);
 }
