@@ -15,10 +15,7 @@
     "currency-precision": 2,
     "currency-separator": ".",
     "currency-decimal": ",",
-    "products-path": "products",
-    "api-user-id": "8a44df697ba7e4b3017ba9d3796315b5",
-    "api-path": "https://nyjx3vieqb.execute-api.us-east-1.amazonaws.com/certification",
-    "mock-products": true,
-    "mock-payment": true
+    "payments-path": "#",
+    "api-path": "https://stoplight.io/mocks/modyo/dynamic/204091081"
   }
 }

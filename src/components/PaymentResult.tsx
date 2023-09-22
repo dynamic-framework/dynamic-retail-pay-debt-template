@@ -1,33 +1,38 @@
 import {
-  MButton,
-  MIcon,
+  DButton,
+  DIcon,
   useFormatCurrency,
   useScreenshotWebShare,
   useScreenshotDownload,
 } from '@dynamic-framework/ui-react';
 import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
-import { liquidParser } from '@dynamic-framework/ui';
 
 import { useAppSelector } from '../store/hooks';
 import {
-  getProductToPay,
+  getAccountToPay,
+  getAmountUsed,
   getResult,
 } from '../store/selectors';
 import errorHandler from '../utils/errorHandler';
+import WidgetUtils from '../utils/widgetUtils';
 
 export default function PaymentResult() {
-  const productToPay = useAppSelector(getProductToPay);
+  const accountToPay = useAppSelector(getAccountToPay);
   const result = useAppSelector(getResult);
+  const amountUsed = useAppSelector(getAmountUsed);
+
   const { t } = useTranslation();
   const { shareRef, share } = useScreenshotWebShare();
   const { downloadRef, download } = useScreenshotDownload();
   const paymentDone = result?.status === 'completed';
 
-  const { values: [amountUsedFormatted] } = useFormatCurrency(result?.amount || 0);
+  const { format } = useFormatCurrency();
+  const amountUsedFormatted = format(amountUsed);
+  const { goToPath } = WidgetUtils();
 
   const redirectToDashboard = () => {
-    window.location.href = `${liquidParser.parse('{{site.url}}')}/${liquidParser.parse('{{vars.payments-path}}')}`;
+    goToPath('PAYMENTS');
   };
 
   return (
@@ -41,7 +46,7 @@ export default function PaymentResult() {
           }}
         >
           <div className="d-flex flex-column gap-2 align-items-center">
-            <MIcon
+            <DIcon
               icon={paymentDone ? 'check-circle' : 'x-circle'}
               size="2rem"
               theme={paymentDone ? 'success' : 'danger'}
@@ -64,11 +69,11 @@ export default function PaymentResult() {
               <div className="d-flex flex-column px-3 gap-2">
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.paidTo')}</div>
-                  <div className="col-6 text-end">{`${productToPay?.name ?? ''} ${productToPay?.productNumber.slice(-3) ?? ''}`}</div>
+                  <div className="col-6 text-end">{`${accountToPay?.name ?? ''} ${accountToPay?.accountNumber.slice(-3) ?? ''}`}</div>
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.transactionId')}</div>
-                  <div className="col-6 text-end">{result?.id}</div>
+                  <div className="col-6 text-end">{result?.repaymentId}</div>
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.timeDate')}</div>
@@ -90,11 +95,11 @@ export default function PaymentResult() {
               <div className="d-flex flex-column px-3 gap-2">
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.paidTo')}</div>
-                  <div className="col-6 text-end">{`${productToPay?.name ?? ''} ${productToPay?.productNumber.slice(-3) ?? ''}`}</div>
+                  <div className="col-6 text-end">{`${accountToPay?.name ?? ''} ${accountToPay?.accountNumber.slice(-3) ?? ''}`}</div>
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.transactionId')}</div>
-                  <div className="col-6 text-end">{result?.id}</div>
+                  <div className="col-6 text-end">{result?.repaymentId}</div>
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.timeDate')}</div>
@@ -104,7 +109,7 @@ export default function PaymentResult() {
             </>
           )}
           <div className="d-flex gap-3 align-items-center justify-content-center">
-            <MIcon
+            <DIcon
               theme="secondary"
               icon="shield-check"
               size="1.5rem"
@@ -119,8 +124,8 @@ export default function PaymentResult() {
         </div>
         <div className="row w-100">
           <div className="col-6 d-flex justify-content-end">
-            <MButton
-              onMClick={() => {
+            <DButton
+              onEventClick={() => {
                 share().catch(errorHandler);
               }}
               iconEnd="share"
@@ -130,8 +135,8 @@ export default function PaymentResult() {
             />
           </div>
           <div className="col-6 d-flex justify-content-start">
-            <MButton
-              onMClick={() => {
+            <DButton
+              onEventClick={() => {
                 download().catch(errorHandler);
               }}
               iconEnd="download"
@@ -143,7 +148,7 @@ export default function PaymentResult() {
         </div>
         <div className="d-flex justify-content-center align-items-center gap-4 w-100">
           {!paymentDone && (
-            <MButton
+            <DButton
               className="flex-1 d-grid"
               text={t('button.retry')}
               theme="secondary"
@@ -151,12 +156,12 @@ export default function PaymentResult() {
               isPill
             />
           )}
-          <MButton
+          <DButton
             className={!paymentDone ? 'flex-1 d-grid' : ''}
             text={t('button.otherPayment')}
             theme="primary"
             isPill
-            onMClick={redirectToDashboard}
+            onEventClick={redirectToDashboard}
           />
         </div>
       </div>

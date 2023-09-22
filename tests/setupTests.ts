@@ -13,11 +13,3 @@ jest.mock('react-i18next', () => ({
   }),
 }));
 
-jest.mock('@modyo-dynamic/modyo-service-retail', () => ({
-  ProductRepository: {
-    list: jest.fn().mockImplementation(() => ({
-      perform: jest.fn().mockResolvedValue([]),
-      abort: jest.fn(),
-    })),
-  },
-}));

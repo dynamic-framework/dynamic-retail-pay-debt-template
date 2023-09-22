@@ -1,21 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { useState } from 'react';
 import {
-  MButton,
+  DButton,
   useFormatCurrency,
   useModalContext,
   useToast,
-  MQuickActionButton,
-  MInputCurrency,
-  MQuickActionSelect,
-  MQuickActionSwitch,
+  DQuickActionButton,
+  DInputCurrency,
+  DQuickActionSelect,
+  DQuickActionSwitch,
 } from '@dynamic-framework/ui-react';
 import { useTranslation } from 'react-i18next';
 
 import usePaymentInput from '../hooks/usePaymentInput';
 import { useAppSelector } from '../store/hooks';
 import {
-  getSelectedProduct,
+  getSelectedAccount,
   getDebt,
 } from '../store/selectors';
 
@@ -23,13 +23,13 @@ export default function PaymentPanel() {
   const { t } = useTranslation();
   const { openModal } = useModalContext();
   const { toast } = useToast();
-  const selectedProduct = useAppSelector(getSelectedProduct);
+  const selectedAccount = useAppSelector(getSelectedAccount);
   const debt = useAppSelector(getDebt);
 
   const {
     amount,
     setAmount,
-  } = usePaymentInput(selectedProduct?.availableBalance);
+  } = usePaymentInput(selectedAccount?.balanceAvailable);
   const [isAutoDebt, setIsAutoDebt] = useState(false);
   const [shortcut, setShortcut] = useState('');
 
@@ -60,7 +60,7 @@ export default function PaymentPanel() {
       openToast('toast.required');
     } else if (amount && amount > debt.totalPayment) {
       openToast('toast.overpay');
-    } else if (amount && selectedProduct && amount > selectedProduct.availableBalance) {
+    } else if (amount && selectedAccount && amount > selectedAccount.balanceAvailable) {
       openToast('toast.insufficient');
     } else {
       openModal('confirmPayment', {
@@ -72,7 +72,7 @@ export default function PaymentPanel() {
     }
   };
 
-  if (!selectedProduct) {
+  if (!selectedAccount) {
     return null;
   }
 
@@ -80,69 +80,69 @@ export default function PaymentPanel() {
     <>
       <div className="py-3">
         <div className="d-flex flex-column gap-3 mx-auto">
-          <MQuickActionSelect
+          <DQuickActionSelect
             {...debt.minimumPayment === amount && { isSelected: true }}
-            mId="minimumOption"
+            innerId="minimumOption"
             name="paymentOption"
             line1={t('shortcuts.minimum')}
             line2={minimumPayment}
             value="minimumOption"
-            onMChange={(e: CustomEvent<string>) => setSelectedOption(e, debt.minimumPayment)}
+            onEventChange={(e: CustomEvent<string>) => setSelectedOption(e, debt.minimumPayment)}
           />
           {shortcut === 'minimumOption' && (
-            <MQuickActionSwitch
-              mId="automaticDebt"
+            <DQuickActionSwitch
+              innerId="automaticDebt"
               label={t('shortcuts.automaticDebt.title')}
               hint={t('shortcuts.automaticDebt.subtext')}
               isChecked={isAutoDebt}
-              onMClick={() => {
+              onEventClick={() => {
                 openModal('autoDebt', { payload: { onAccept: setIsAutoDebt, isActive: isAutoDebt } });
               }}
             />
           )}
-          <MQuickActionSelect
-            mId="otherAmountOption"
+          <DQuickActionSelect
+            innerId="otherAmountOption"
             name="paymentOption"
             line1={t('shortcuts.other')}
             line2={t('shortcuts.amount')}
             value="otherAmount"
-            onMChange={(e: CustomEvent<string>) => setSelectedOption(e, 0)}
+            onEventChange={(e: CustomEvent<string>) => setSelectedOption(e, 0)}
           />
           {shortcut === 'otherAmount' && (
-            <MInputCurrency
-              mId="debtInput"
+            <DInputCurrency
+              innerId="debtInput"
               placeholder={t('currencyInput.placeholder')}
               labelIcon="currency-dollar"
               minValue={debt.minimumPayment}
-              maxValue={selectedProduct.accountingBalance}
-              onChange={(value) => setAmount(value)}
+              maxValue={selectedAccount.accountingBalance}
+              onEventChange={(value) => setAmount(value)}
               value={amount}
             />
           )}
-          <MQuickActionSelect
+          <DQuickActionSelect
             {...debt.totalPayment === amount && { isSelected: true }}
-            mId="totalOption"
+            innerId="totalOption"
             name="paymentOption"
             line1={t('shortcuts.total')}
             line2={totalPayment}
             value="totalOption"
-            onMChange={(e: CustomEvent<string>) => setSelectedOption(e, debt.totalPayment)}
+            onEventChange={(e: CustomEvent<string>) => setSelectedOption(e, debt.totalPayment)}
           />
-          <MQuickActionButton
+          <DQuickActionButton
             className="shadow-none"
             representativeIcon="credit-card"
             line1={t('shortcuts.paymentAlternatives')}
             line2={t('paymentAlternatives.subtext')}
-            onMClick={() => openModal('paymentAlternatives')}
+            onEventClick={() => openModal('paymentAlternatives')}
           />
         </div>
       </div>
       <div className="d-flex justify-content-center">
-        <MButton
+        <DButton
           text={t('button.pay')}
           isPill
           theme="primary"
-          onMClick={handlePaymentClick}
+          onEventClick={handlePaymentClick}
         />
       </div>
     </>

@@ -1,6 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Product, Transaction } from '@modyo-dynamic/modyo-service-retail';
+import {
+  DepositAccount,
+  LoanAccount,
+  Transaction,
+} from '../services/interface';
 
 export type Debt = {
   minimumPayment: number;
@@ -10,16 +14,16 @@ export type Debt = {
 export type WidgetState = {
   isPaid?: boolean;
   debt: Debt;
-  products: Array<Product>;
-  selectedProduct?: Product;
-  productToPay?: Product;
+  accounts: Array<DepositAccount>;
+  selectedAccount?: DepositAccount;
+  accountToPay?: LoanAccount;
   amountUsed?: number;
   result?: Transaction;
 };
 
 export const initialState = {
   isPaid: false,
-  products: [],
+  accounts: [],
   debt: {
     minimumPayment: 0,
     totalPayment: 0,
@@ -34,11 +38,11 @@ const slice = createSlice({
     setIsPaid(state, action: PayloadAction<boolean>) {
       state.isPaid = action.payload;
     },
-    setProducts(state, action: PayloadAction<Array<Product>>) {
-      state.products = action.payload;
+    setAccounts(state, action: PayloadAction<Array<DepositAccount>>) {
+      state.accounts = action.payload;
     },
-    setSelectedProduct(state, action: PayloadAction<Product | undefined>) {
-      state.selectedProduct = action.payload;
+    setSelectedAccount(state, action: PayloadAction<DepositAccount | undefined>) {
+      state.selectedAccount = action.payload;
     },
     setAmountUsed(state, action: PayloadAction<number | undefined>) {
       state.amountUsed = action.payload;
@@ -46,8 +50,8 @@ const slice = createSlice({
     setResult(state, action: PayloadAction<Transaction>) {
       state.result = action.payload;
     },
-    setProductToPay(state, action: PayloadAction<Product | undefined>) {
-      state.productToPay = action.payload;
+    setAccountToPay(state, action: PayloadAction<LoanAccount | undefined>) {
+      state.accountToPay = action.payload;
     },
     setDebt(state, action: PayloadAction<Debt>) {
       state.debt = action.payload;
@@ -57,11 +61,11 @@ const slice = createSlice({
 
 export const {
   setIsPaid,
-  setProducts,
-  setSelectedProduct,
+  setAccounts,
+  setSelectedAccount,
   setAmountUsed,
   setResult,
-  setProductToPay,
+  setAccountToPay,
   setDebt,
 } = slice.actions;
 export default slice.reducer;
