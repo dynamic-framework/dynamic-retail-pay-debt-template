@@ -4,7 +4,6 @@ import {
   useFormatCurrency,
   useScreenshotWebShare,
   useScreenshotDownload,
-  liquidParser,
 } from '@dynamic-framework/ui-react';
 import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +15,7 @@ import {
   getResult,
 } from '../store/selectors';
 import errorHandler from '../utils/errorHandler';
+import WidgetUtils from '../utils/widgetUtils';
 
 export default function PaymentResult() {
   const accountToPay = useAppSelector(getAccountToPay);
@@ -27,10 +27,12 @@ export default function PaymentResult() {
   const { downloadRef, download } = useScreenshotDownload();
   const paymentDone = result?.status === 'completed';
 
-  const { values: [amountUsedFormatted] } = useFormatCurrency(amountUsed);
+  const { format } = useFormatCurrency();
+  const amountUsedFormatted = format(amountUsed);
+  const { goToPath } = WidgetUtils();
 
   const redirectToDashboard = () => {
-    window.location.href = `${liquidParser.parse('{{site.url}}')}/${liquidParser.parse('{{vars.payments-path}}')}`;
+    goToPath('PAYMENTS');
   };
 
   return (
