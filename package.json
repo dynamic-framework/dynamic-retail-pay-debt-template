@@ -59,7 +59,7 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
     "eject": "craco eject",
     "eslint": "eslint src/**/*{.ts,.tsx}",
-    "push": "DEBUG=* modyo-cli push --publish"
+    "push": "DEBUG=* npx @modyo/cli@latest push --publish"
   },
   "browserslist": {
     "production": [
