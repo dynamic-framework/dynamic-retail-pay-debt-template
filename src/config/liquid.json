@@ -15,7 +15,7 @@
     "currency-precision": 2,
     "currency-separator": ".",
     "currency-decimal": ",",
-    "path-payments": "#",
+    "payments-path": "#",
     "api-path": "https://stoplight.io/mocks/modyo/dynamic/204091081"
   }
 }
