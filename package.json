@@ -1,9 +1,9 @@
 {
   "name": "@dynamic-framework/dynamic-retail-pay-debt-template",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
-    "@dynamic-framework/ui-react": "^1.6.0",
+    "@dynamic-framework/ui-react": "^1.7.2",
     "@reduxjs/toolkit": "^1.8.4",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -12,7 +12,7 @@
     "classnames": "^2.3.2",
     "html2canvas": "^1.4.1",
     "i18next": "~21.9.0",
-    "liquidjs": "^9.39.2",
+    "liquidjs": "^10.9.3",
     "lodash.debounce": "^4.0.8",
     "luxon": "~3.2.1",
     "react": "^18.2.0",
@@ -49,6 +49,7 @@
     "react-scripts": "5.0.1",
     "redux-mock-store": "^1.5.4",
     "sass": "~1.54.0",
+    "stylelint": "^15.11.0",
     "ts-jest": "^29.0.5",
     "typescript": "^4.6.4",
     "webpack": "^5.64.4"
@@ -59,7 +60,8 @@
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
     "eject": "craco eject",
     "eslint": "eslint src/**/*{.ts,.tsx}",
-    "push": "DEBUG=* npx @modyo/cli@latest push --publish"
+    "push": "npm run build && npx @modyo/cli@latest push --publish",
+    "push:debug": "npm run build && DEBUG=* npx @modyo/cli@latest push --publish"
   },
   "browserslist": {
     "production": [
@@ -74,7 +76,6 @@
     ]
   },
   "engines": {
-    "node": ">=16.16",
-    "pnpm": ">=7.29"
+    "node": ">=18.18"
   }
 }

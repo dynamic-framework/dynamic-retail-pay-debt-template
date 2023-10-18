@@ -125,7 +125,7 @@ export default function PaymentResult() {
         <div className="row w-100">
           <div className="col-6 d-flex justify-content-end">
             <DButton
-              onEventClick={() => {
+              onClick={() => {
                 share().catch(errorHandler);
               }}
               iconEnd="share"
@@ -136,7 +136,7 @@ export default function PaymentResult() {
           </div>
           <div className="col-6 d-flex justify-content-start">
             <DButton
-              onEventClick={() => {
+              onClick={() => {
                 download().catch(errorHandler);
               }}
               iconEnd="download"
@@ -161,7 +161,7 @@ export default function PaymentResult() {
             text={t('button.otherPayment')}
             theme="primary"
             isPill
-            onEventClick={redirectToDashboard}
+            onClick={redirectToDashboard}
           />
         </div>
       </div>

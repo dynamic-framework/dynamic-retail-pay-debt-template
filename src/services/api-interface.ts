@@ -27,6 +27,7 @@ export type ApiAccount = {
   status: string;
   depositDetails?: ApiDepositDetails;
   loanDetails?: ApiLoanDetails;
+  paymentDetails?: ApiPaymentDetails;
 };
 
 export type ApiDepositDetails = {
@@ -80,6 +81,10 @@ export type ApiLoanDetails = {
       source: string;
     };
   };
+};
+
+export type ApiPaymentDetails = {
+  dueSinceDate: string;
 };
 
 export type ApiTransaction = {

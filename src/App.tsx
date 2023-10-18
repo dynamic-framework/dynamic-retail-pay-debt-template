@@ -1,18 +1,19 @@
 import { useTranslation } from 'react-i18next';
+
 import { useAppSelector } from './store/hooks';
 import { getIsPaid } from './store/selectors';
 
 import PaymentResult from './components/PaymentResult';
 import Payment from './components/Payment';
-import useLoanInfo from './services/hooks/useLoanInfo';
+import useLoanAccountEffect from './services/hooks/useLoanAccountEffect';
 
 export default function App() {
-  useLoanInfo();
+  useLoanAccountEffect();
   const isPaid = useAppSelector(getIsPaid);
   const { t } = useTranslation();
 
   return (
-    <div className="container py-3">
+    <div className="py-3">
       <h1 className="fs-4 fw-bold mb-3 mb-md-5">
         {t('title')}
       </h1>

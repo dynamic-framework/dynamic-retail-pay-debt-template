@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import {
   DButton,
   DModal,
+  DModalBody,
   DQuickActionButton,
   useModalContext,
 } from '@dynamic-framework/ui-react';
@@ -13,13 +14,11 @@ export default function ModalPaymentAlternatives() {
   return (
     <DModal
       name="paymentAlternatives"
-      innerClass="d-block"
+      className="d-block"
       isCentered
       isStatic
     >
-      <div
-        slot="body"
-      >
+      <DModalBody>
         <div className="payment-alternatives m-4 mb-0 d-flex flex-column">
           <DQuickActionButton
             line1={t('modal.paymentAlternatives.skip')}
@@ -39,10 +38,10 @@ export default function ModalPaymentAlternatives() {
             text={t('button.cancel')}
             theme="primary"
             isPill
-            onEventClick={() => closeModal()}
+            onClick={() => closeModal()}
           />
         </div>
-      </div>
+      </DModalBody>
     </DModal>
   );
 }

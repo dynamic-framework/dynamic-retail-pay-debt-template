@@ -2,19 +2,26 @@ import { useTranslation } from 'react-i18next';
 import {
   DButton,
   DModal,
-  ModalProps,
+  DModalHeader,
+  DModalBody,
+  DModalFooter,
 } from '@dynamic-framework/ui-react';
 import { useMemo } from 'react';
+
+import type { ModalProps } from '@dynamic-framework/ui-react';
+
 import { getSelectedAccount } from '../store/selectors';
 import { useAppSelector } from '../store/hooks';
 
-export default function ModalAutoDebt({
-  closeModal,
-  payload: {
-    isActive,
-    onAccept,
-  },
-}: ModalProps) {
+export default function ModalAutoDebt(
+  {
+    closeModal,
+    payload: {
+      isActive,
+      onAccept,
+    },
+  }: ModalProps,
+) {
   const { t } = useTranslation();
   const account = useAppSelector(getSelectedAccount);
   const accountId = useMemo(() => account?.accountNumber.slice(-3), [account]);
@@ -23,16 +30,17 @@ export default function ModalAutoDebt({
       name="autoDebt"
       isCentered
       isStatic
-      showCloseButton
-      innerClass="d-block"
-      onEventClose={() => closeModal()}
+      className="d-block"
     >
-      <div slot="header">
+      <DModalHeader
+        showCloseButton
+        onClose={() => closeModal()}
+      >
         <h4 className="fw-bold">
           {isActive ? t('modal.automaticDebt.offTitle') : t('modal.automaticDebt.onTitle')}
         </h4>
-      </div>
-      <div slot="body">
+      </DModalHeader>
+      <DModalBody>
         <div className="bg-gray-soft mx-4 p-3 rounded-1">
           {!isActive
             ? <p className="">{t('modal.automaticDebt.onBody', { accountId })}</p>
@@ -43,27 +51,27 @@ export default function ModalAutoDebt({
             ? <p>{t('modal.automaticDebt.onAuthorize')}</p>
             : <p>{t('modal.automaticDebt.offAuthorize')}</p>}
         </div>
-      </div>
-      <div slot="footer">
+      </DModalBody>
+      <DModalFooter>
         <DButton
           className="flex-1 d-grid"
           text={t('button.cancel')}
           isPill
           theme="secondary"
           variant="outline"
-          onEventClick={() => closeModal()}
+          onClick={() => closeModal()}
         />
         <DButton
           className="flex-1 d-grid"
           text={isActive ? t('button.suspend') : t('button.authorize')}
           isPill
-          onEventClick={() => {
+          onClick={() => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             onAccept(!isActive);
             closeModal();
           }}
         />
-      </div>
+      </DModalFooter>
     </DModal>
   );
 }
