@@ -4,27 +4,25 @@ import {
   DInputSelect,
   useFormatCurrency,
 } from '@dynamic-framework/ui-react';
-
 import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { Account, DepositAccount } from '../services/interface';
 import { setSelectedAccount } from '../store/slice';
 import useDepositAccountsEffect from '../services/hooks/useDepositAccountsEffect';
 import {
   useAppDispatch,
   useAppSelector,
 } from '../store/hooks';
-
 import {
   getAccountToPay,
   getDebt,
   getSelectedAccount,
 } from '../store/selectors';
-
 import PaymentPanel from './PaymentPanel';
 import SkeletonLoader from './SkeletonLoader';
+
+import type { Account, DepositAccount } from '../services/interface';
 
 export default function Payment() {
   const { t } = useTranslation();
@@ -71,15 +69,15 @@ export default function Payment() {
             </div>
           </div>
           <div>
-            <DInputSelect
-              class="mb-1"
-              innerId="selectAccount"
+            <DInputSelect<Account>
+              className="mb-1"
+              id="selectAccount"
               label={t('payFromLabel')}
               labelExtractor={({ name, accountNumber }: Account) => `${name} *** ${accountNumber.slice(-3)}`}
               valueExtractor={({ id }: Account) => id}
               selectedOption={selectedAccount}
               options={accounts}
-              onEventChange={({ detail: account }: CustomEvent<Account>) => {
+              onChange={(account) => {
                 dispatch(setSelectedAccount(account as DepositAccount));
               }}
               hint={t('available', { amount: amountAvailable })}

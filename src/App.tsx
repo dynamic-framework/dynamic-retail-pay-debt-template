@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+
 import { useAppSelector } from './store/hooks';
 import { getIsPaid } from './store/selectors';
 
@@ -12,7 +13,7 @@ export default function App() {
   const { t } = useTranslation();
 
   return (
-    <div className="container py-3">
+    <div className="py-3">
       <h1 className="fs-4 fw-bold mb-3 mb-md-5">
         {t('title')}
       </h1>

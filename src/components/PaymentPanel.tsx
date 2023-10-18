@@ -43,9 +43,9 @@ export default function PaymentPanel() {
     debt.totalPayment,
   );
 
-  const setSelectedOption = ({ detail }: CustomEvent<string>, value: number) => {
-    setShortcut(detail);
-    setAmount(value);
+  const setSelectedOption = (value: string, amountValue: number) => {
+    setShortcut(value);
+    setAmount(amountValue);
   };
 
   const openToast = (key: string) => {
@@ -82,58 +82,58 @@ export default function PaymentPanel() {
         <div className="d-flex flex-column gap-3 mx-auto">
           <DQuickActionSelect
             {...debt.minimumPayment === amount && { isSelected: true }}
-            innerId="minimumOption"
+            id="minimumOption"
             name="paymentOption"
             line1={t('shortcuts.minimum')}
             line2={minimumPayment}
             value="minimumOption"
-            onEventChange={(e: CustomEvent<string>) => setSelectedOption(e, debt.minimumPayment)}
+            onChange={(event) => setSelectedOption(event.currentTarget.value, debt.minimumPayment)}
           />
           {shortcut === 'minimumOption' && (
             <DQuickActionSwitch
-              innerId="automaticDebt"
+              id="automaticDebt"
               label={t('shortcuts.automaticDebt.title')}
               hint={t('shortcuts.automaticDebt.subtext')}
               isChecked={isAutoDebt}
-              onEventClick={() => {
+              onClick={() => {
                 openModal('autoDebt', { payload: { onAccept: setIsAutoDebt, isActive: isAutoDebt } });
               }}
             />
           )}
           <DQuickActionSelect
-            innerId="otherAmountOption"
+            id="otherAmountOption"
             name="paymentOption"
             line1={t('shortcuts.other')}
             line2={t('shortcuts.amount')}
             value="otherAmount"
-            onEventChange={(e: CustomEvent<string>) => setSelectedOption(e, 0)}
+            onChange={(event) => setSelectedOption(event.currentTarget.value, 0)}
           />
           {shortcut === 'otherAmount' && (
             <DInputCurrency
-              innerId="debtInput"
+              id="debtInput"
               placeholder={t('currencyInput.placeholder')}
               labelIcon="currency-dollar"
               minValue={debt.minimumPayment}
               maxValue={selectedAccount.accountingBalance}
-              onEventChange={(value) => setAmount(value)}
+              onChange={(value) => setAmount(value)}
               value={amount}
             />
           )}
           <DQuickActionSelect
             {...debt.totalPayment === amount && { isSelected: true }}
-            innerId="totalOption"
+            id="totalOption"
             name="paymentOption"
             line1={t('shortcuts.total')}
             line2={totalPayment}
             value="totalOption"
-            onEventChange={(e: CustomEvent<string>) => setSelectedOption(e, debt.totalPayment)}
+            onChange={(event) => setSelectedOption(event.currentTarget.value, debt.totalPayment)}
           />
           <DQuickActionButton
             className="shadow-none"
             representativeIcon="credit-card"
             line1={t('shortcuts.paymentAlternatives')}
             line2={t('paymentAlternatives.subtext')}
-            onEventClick={() => openModal('paymentAlternatives')}
+            onClick={() => openModal('paymentAlternatives')}
           />
         </div>
       </div>
@@ -142,7 +142,7 @@ export default function PaymentPanel() {
           text={t('button.pay')}
           isPill
           theme="primary"
-          onEventClick={handlePaymentClick}
+          onClick={handlePaymentClick}
         />
       </div>
     </>

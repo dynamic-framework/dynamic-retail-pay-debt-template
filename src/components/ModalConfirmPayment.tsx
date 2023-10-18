@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
+import { useMemo } from 'react';
 import {
   DButton,
   DModal,
+  DModalHeader,
+  DModalBody,
+  DModalFooter,
   useFormatCurrency,
 } from '@dynamic-framework/ui-react';
-import type { ModalProps } from '@dynamic-framework/ui-react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { useMemo } from 'react';
+import type { ModalProps } from '@dynamic-framework/ui-react';
+
 import { useAppSelector } from '../store/hooks';
 import { getAmountUsed, getSelectedAccount } from '../store/selectors';
 import usePayLoan from '../services/hooks/usePayLoan';
@@ -18,13 +22,15 @@ const KEYS_PAYMENT_MESSAGE: Record<string, string> = {
   totalOption: 'modal.pay.total',
 };
 
-export default function ModalConfirmPayment({
-  closeModal,
-  payload: {
-    isAutoDebt,
-    paymentType,
-  },
-}: ModalProps) {
+export default function ModalConfirmPayment(
+  {
+    closeModal,
+    payload: {
+      isAutoDebt,
+      paymentType,
+    },
+  }: ModalProps,
+) {
   const { t } = useTranslation();
   const amountUsed = useAppSelector(getAmountUsed);
   const selectedAccount = useAppSelector(getSelectedAccount);
@@ -61,16 +67,17 @@ export default function ModalConfirmPayment({
       name="modalConfirmPayment"
       isCentered
       isStatic
-      showCloseButton
-      innerClass="d-block"
-      onEventClose={() => closeModal()}
+      className="d-block"
     >
-      <div slot="header">
+      <DModalHeader
+        showCloseButton
+        onClose={() => closeModal()}
+      >
         <h4 className="fw-bold fs-5">
           {t('modal.pay.title', { amount: amountUsedFormatted })}
         </h4>
-      </div>
-      <div slot="body">
+      </DModalHeader>
+      <DModalBody>
         <div className="bg-gray-soft mx-4 mb-4 p-3 rounded-1">
           <p className={isAutoDebt ? 'pb-3' : ''}>{confirmationBody}</p>
           <p>
@@ -79,15 +86,15 @@ export default function ModalConfirmPayment({
               : t('modal.pay.instantly')}
           </p>
         </div>
-      </div>
-      <div slot="footer">
+      </DModalBody>
+      <DModalFooter>
         <DButton
           className="d-grid"
           text={t('button.cancel')}
           theme="secondary"
           variant="outline"
           isPill
-          onEventClick={() => closeModal()}
+          onClick={() => closeModal()}
         />
         <DButton
           className="d-grid"
@@ -95,9 +102,9 @@ export default function ModalConfirmPayment({
           text={t('button.pay')}
           theme="primary"
           isPill
-          onEventClick={handlePaid}
+          onClick={handlePaid}
         />
-      </div>
+      </DModalFooter>
     </DModal>
   );
 }
