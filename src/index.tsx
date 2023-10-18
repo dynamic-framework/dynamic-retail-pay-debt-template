@@ -7,8 +7,6 @@ import {
   DToastContainer,
 } from '@dynamic-framework/ui-react';
 
-import './style/base.scss';
-
 import './config/liquidConfig';
 import './config/i18nConfig';
 
@@ -18,6 +16,12 @@ import store from './store/store';
 import ModalPaymentAlternatives from './components/ModalPaymentAlternatives';
 import ModalConfirmPayment from './components/ModalConfirmPayment';
 import ModalAutoDebt from './components/ModalAutoDebt';
+
+if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line global-require
+  require('@dynamic-framework/ui-react/dist/css/dynamic-ui.css');
+}
+require('./style/base.scss');
 
 const root = ReactDOM.createRoot(document.getElementById('payDebtTemplate') as Element);
 root.render(
@@ -45,7 +49,3 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-if (process.env.NODE_ENV === 'development') {
-  // eslint-disable-next-line global-require
-  require('@dynamic-framework/ui-react/dist/css/dynamic-ui.css');
-}
