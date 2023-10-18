@@ -5,10 +5,10 @@ import { getIsPaid } from './store/selectors';
 
 import PaymentResult from './components/PaymentResult';
 import Payment from './components/Payment';
-import useLoanInfo from './services/hooks/useLoanInfo';
+import useLoanAccountEffect from './services/hooks/useLoanAccountEffect';
 
 export default function App() {
-  useLoanInfo();
+  useLoanAccountEffect();
   const isPaid = useAppSelector(getIsPaid);
   const { t } = useTranslation();
 

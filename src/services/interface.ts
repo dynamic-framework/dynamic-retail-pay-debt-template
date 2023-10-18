@@ -17,7 +17,7 @@ export type DepositAccount = BaseAccount<AccountBaseType.Deposit> & {
 export type LoanAccount = BaseAccount<AccountBaseType.Loan> & {
   balanceOwed: number;
   balanceRemaining: number;
-  dueSinceDate: string;
+  paymentDueSinceDate: string;
   due: number;
 };
 

@@ -23,7 +23,7 @@ export default function accountMapper(apiAccount: ApiAccount): Account {
       baseType,
       balanceOwed: apiAccount.loanDetails?.balances.owed as number,
       due: apiAccount.loanDetails?.due as number,
-      dueSinceDate: apiAccount.loanDetails?.dueSinceDate as string,
+      paymentDueSinceDate: apiAccount.paymentDetails?.dueSinceDate as string,
       balanceRemaining: apiAccount.loanDetails?.balances.remaining as number,
     };
   }

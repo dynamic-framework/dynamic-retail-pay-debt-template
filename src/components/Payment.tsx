@@ -41,8 +41,8 @@ export default function Payment() {
   );
 
   const dateToPay = useMemo(
-    () => accountToPay?.dueSinceDate,
-    [accountToPay?.dueSinceDate],
+    () => accountToPay?.paymentDueSinceDate,
+    [accountToPay?.paymentDueSinceDate],
   );
 
   return (

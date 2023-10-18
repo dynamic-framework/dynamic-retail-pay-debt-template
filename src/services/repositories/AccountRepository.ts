@@ -19,6 +19,7 @@ export async function list(config: { abortSignal: GenericAbortSignal }) {
 }
 
 export async function get(
+  accountId: string,
   config: { abortSignal: GenericAbortSignal },
 ) {
   const { data } = await ApiClient.request<ApiAccount>({
@@ -26,7 +27,7 @@ export async function get(
     method: 'GET',
     signal: config.abortSignal,
     headers: {
-      Prefer: 'code=200',
+      Prefer: `code=200, example=${accountId}`,
     },
   });
   return accountMapper(data) as LoanAccount;
