@@ -2,8 +2,6 @@ import {
   DButton,
   DIcon,
   useFormatCurrency,
-  useScreenshotWebShare,
-  useScreenshotDownload,
 } from '@dynamic-framework/ui-react';
 import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +14,8 @@ import {
 } from '../store/selectors';
 import errorHandler from '../utils/errorHandler';
 import WidgetUtils from '../utils/widgetUtils';
+import useScreenshotWebShare from '../hooks/useScreenshotWebShare';
+import useScreenshotDownload from '../hooks/useScreenshotDownload';
 
 export default function PaymentResult() {
   const accountToPay = useAppSelector(getAccountToPay);
