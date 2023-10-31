@@ -17,8 +17,11 @@ import ModalPaymentAlternatives from './components/ModalPaymentAlternatives';
 import ModalConfirmPayment from './components/ModalConfirmPayment';
 import ModalAutoDebt from './components/ModalAutoDebt';
 
-import '@dynamic-framework/ui-react/dist/css/dynamic-ui.css';
-import './styles/base.scss';
+if (process.env.NODE_ENV === 'development') {
+  // eslint-disable-next-line global-require
+  require('@dynamic-framework/ui-react/dist/css/dynamic-ui.css');
+}
+require('./styles/base.scss');
 
 const root = ReactDOM.createRoot(document.getElementById('payDebtTemplate') as Element);
 root.render(
