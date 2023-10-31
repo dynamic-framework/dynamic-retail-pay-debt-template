@@ -103,7 +103,7 @@ export default function PaymentResult() {
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.timeDate')}</div>
-                  <div className="col-6 text-end">{DateTime.fromISO(result?.date ?? DateTime.now().toISO()).toFormat('MM/dd/yy, hh:mm a')}</div>
+                  <div className="col-6 text-end">{DateTime.fromISO(result?.date ?? DateTime.now().toISO()!).toFormat('MM/dd/yy, hh:mm a')}</div>
                 </div>
               </div>
             </>
