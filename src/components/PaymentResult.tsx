@@ -2,8 +2,6 @@ import {
   DButton,
   DIcon,
   useFormatCurrency,
-  useScreenshotWebShare,
-  useScreenshotDownload,
 } from '@dynamic-framework/ui-react';
 import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +14,8 @@ import {
 } from '../store/selectors';
 import errorHandler from '../utils/errorHandler';
 import WidgetUtils from '../utils/widgetUtils';
+import useScreenshotWebShare from '../hooks/useScreenshotWebShare';
+import useScreenshotDownload from '../hooks/useScreenshotDownload';
 
 export default function PaymentResult() {
   const accountToPay = useAppSelector(getAccountToPay);
@@ -103,7 +103,7 @@ export default function PaymentResult() {
                 </div>
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.timeDate')}</div>
-                  <div className="col-6 text-end">{DateTime.fromISO(result?.date ?? DateTime.now().toISO()).toFormat('MM/dd/yy, hh:mm a')}</div>
+                  <div className="col-6 text-end">{DateTime.fromISO(result?.date ?? DateTime.now().toISO()!).toFormat('MM/dd/yy, hh:mm a')}</div>
                 </div>
               </div>
             </>
