@@ -5,12 +5,12 @@ import { setAccountToPay, setDebt } from '../../store/slice';
 import errorHandler from '../../utils/errorHandler';
 import { AccountRepository } from '../repositories';
 import getAccountIdQueryString from '../utils/getAccountIdQueryString';
-import WidgetUtils from '../../utils/widgetUtils';
+import useWidgetUtils from '../../hooks/useWidgetUtils';
 
 export default function useLoanAccountEffect() {
   const [loading, setLoading] = useState(false);
   const dispatch = useAppDispatch();
-  const { goToPath } = WidgetUtils();
+  const { navigateTo } = useWidgetUtils();
   useEffect(() => {
     const abortController = new AbortController();
 
@@ -31,7 +31,7 @@ export default function useLoanAccountEffect() {
           dispatch(setAccountToPay(loanToPay));
           dispatch(setDebt(debt));
         } else {
-          goToPath('PAYMENTS');
+          navigateTo('PAYMENTS');
         }
 
         setLoading(false);
@@ -43,7 +43,7 @@ export default function useLoanAccountEffect() {
     return () => {
       abortController.abort();
     };
-  }, [dispatch, goToPath]);
+  }, [dispatch, navigateTo]);
 
   return {
     loading,
