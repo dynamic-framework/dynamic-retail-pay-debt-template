@@ -75,7 +75,7 @@ export default function Payment() {
               label={t('payFromLabel')}
               labelExtractor={({ name, accountNumber }: Account) => `${name} *** ${accountNumber.slice(-3)}`}
               valueExtractor={({ id }: Account) => id}
-              selectedOption={selectedAccount}
+              value={selectedAccount?.id}
               options={accounts}
               onChange={(account) => {
                 dispatch(setSelectedAccount(account as DepositAccount));

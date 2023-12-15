@@ -13,6 +13,8 @@ import type { ModalProps } from '@dynamic-framework/ui-react';
 import { getSelectedAccount } from '../store/selectors';
 import { useAppSelector } from '../store/hooks';
 
+import type { ModalAvailablePayload } from '../interface';
+
 export default function ModalAutoDebt(
   {
     closeModal,
@@ -20,7 +22,7 @@ export default function ModalAutoDebt(
       isActive,
       onAccept,
     },
-  }: ModalProps,
+  }: ModalProps<ModalAvailablePayload['autoDebt']>,
 ) {
   const { t } = useTranslation();
   const account = useAppSelector(getSelectedAccount);
@@ -28,8 +30,8 @@ export default function ModalAutoDebt(
   return (
     <DModal
       name="autoDebt"
-      isCentered
-      isStatic
+      centered
+      staticBackdrop
       className="d-block"
     >
       <DModalHeader
@@ -56,7 +58,7 @@ export default function ModalAutoDebt(
         <DButton
           className="flex-1 d-grid"
           text={t('button.cancel')}
-          isPill
+          pill
           theme="secondary"
           variant="outline"
           onClick={() => closeModal()}
@@ -64,9 +66,8 @@ export default function ModalAutoDebt(
         <DButton
           className="flex-1 d-grid"
           text={isActive ? t('button.suspend') : t('button.authorize')}
-          isPill
+          pill
           onClick={() => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
             onAccept(!isActive);
             closeModal();
           }}

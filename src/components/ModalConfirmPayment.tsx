@@ -16,6 +16,8 @@ import { useAppSelector } from '../store/hooks';
 import { getAmountUsed, getSelectedAccount } from '../store/selectors';
 import usePayLoan from '../services/hooks/usePayLoan';
 
+import type { ModalAvailablePayload } from '../interface';
+
 const KEYS_PAYMENT_MESSAGE: Record<string, string> = {
   minimumOption: 'modal.pay.minimum',
   otherAmount: 'modal.pay.other',
@@ -29,7 +31,7 @@ export default function ModalConfirmPayment(
       isAutoDebt,
       paymentType,
     },
-  }: ModalProps,
+  }: ModalProps<ModalAvailablePayload['confirmPayment']>,
 ) {
   const { t } = useTranslation();
   const amountUsed = useAppSelector(getAmountUsed);
@@ -38,7 +40,7 @@ export default function ModalConfirmPayment(
   const { values: [amountUsedFormatted] } = useFormatCurrency(amountUsed);
 
   const keyPaymentMessage = useMemo<string>(
-    () => KEYS_PAYMENT_MESSAGE[paymentType as string],
+    () => KEYS_PAYMENT_MESSAGE[paymentType],
     [paymentType],
   );
 
@@ -65,8 +67,8 @@ export default function ModalConfirmPayment(
   return (
     <DModal
       name="modalConfirmPayment"
-      isCentered
-      isStatic
+      centered
+      staticBackdrop
       className="d-block"
     >
       <DModalHeader
@@ -93,15 +95,15 @@ export default function ModalConfirmPayment(
           text={t('button.cancel')}
           theme="secondary"
           variant="outline"
-          isPill
+          pill
           onClick={() => closeModal()}
         />
         <DButton
           className="d-grid"
-          isLoading={loading}
+          loading={loading}
           text={t('button.pay')}
           theme="primary"
-          isPill
+          pill
           onClick={handlePaid}
         />
       </DModalFooter>

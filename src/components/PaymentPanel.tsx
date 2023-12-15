@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {
   DButton,
   useFormatCurrency,
-  useModalContext,
+  useDModalContext,
   useToast,
   DQuickActionButton,
   DInputCurrency,
@@ -19,9 +19,11 @@ import {
   getDebt,
 } from '../store/selectors';
 
+import type { ModalAvailablePayload } from '../interface';
+
 export default function PaymentPanel() {
   const { t } = useTranslation();
-  const { openModal } = useModalContext();
+  const { openModal } = useDModalContext<ModalAvailablePayload>();
   const { toast } = useToast();
   const selectedAccount = useAppSelector(getSelectedAccount);
   const debt = useAppSelector(getDebt);
@@ -64,10 +66,8 @@ export default function PaymentPanel() {
       openToast('toast.insufficient');
     } else {
       openModal('confirmPayment', {
-        payload: {
-          isAutoDebt,
-          paymentType: shortcut,
-        },
+        isAutoDebt,
+        paymentType: shortcut,
       });
     }
   };
@@ -94,9 +94,9 @@ export default function PaymentPanel() {
               id="automaticDebt"
               label={t('shortcuts.automaticDebt.title')}
               hint={t('shortcuts.automaticDebt.subtext')}
-              isChecked={isAutoDebt}
+              checked={isAutoDebt}
               onClick={() => {
-                openModal('autoDebt', { payload: { onAccept: setIsAutoDebt, isActive: isAutoDebt } });
+                openModal('autoDebt', { onAccept: setIsAutoDebt, isActive: isAutoDebt });
               }}
             />
           )}
@@ -133,14 +133,14 @@ export default function PaymentPanel() {
             representativeIcon="credit-card"
             line1={t('shortcuts.paymentAlternatives')}
             line2={t('paymentAlternatives.subtext')}
-            onClick={() => openModal('paymentAlternatives')}
+            onClick={() => openModal('paymentAlternatives', undefined)}
           />
         </div>
       </div>
       <div className="d-flex justify-content-center">
         <DButton
           text={t('button.pay')}
-          isPill
+          pill
           theme="primary"
           onClick={handlePaymentClick}
         />

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import {
   DContextProvider,
-  ModalContextProvider,
+  DModalContextProvider,
   DToastContainer,
 } from '@dynamic-framework/ui-react';
 
@@ -16,16 +16,22 @@ import store from './store/store';
 import ModalPaymentAlternatives from './components/ModalPaymentAlternatives';
 import ModalConfirmPayment from './components/ModalConfirmPayment';
 import ModalAutoDebt from './components/ModalAutoDebt';
+import { SITE_LANG, VARS_CURRENCY } from './config/widgetConfig';
 
 import '@dynamic-framework/ui-react/dist/css/dynamic-ui.css';
 import './styles/base.scss';
 
+import type { ModalAvailablePayload } from './interface';
+
 const root = ReactDOM.createRoot(document.getElementById('payDebtTemplate') as Element);
 root.render(
   <React.StrictMode>
-    <DContextProvider>
+    <DContextProvider
+      language={SITE_LANG}
+      currency={VARS_CURRENCY}
+    >
       <Provider store={store}>
-        <ModalContextProvider
+        <DModalContextProvider<ModalAvailablePayload>
           portalName="modalPortal"
           availableModals={{
             confirmPayment: ModalConfirmPayment,
@@ -35,7 +41,7 @@ root.render(
         >
           <App />
           <DToastContainer />
-        </ModalContextProvider>
+        </DModalContextProvider>
       </Provider>
     </DContextProvider>
   </React.StrictMode>,
