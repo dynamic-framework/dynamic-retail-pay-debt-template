@@ -153,14 +153,14 @@ export default function PaymentResult() {
               text={t('button.retry')}
               theme="secondary"
               variant="outline"
-              isPill
+              pill
             />
           )}
           <DButton
             className={!paymentDone ? 'flex-1 d-grid' : ''}
             text={t('button.otherPayment')}
             theme="primary"
-            isPill
+            pill
             onClick={redirectToDashboard}
           />
         </div>

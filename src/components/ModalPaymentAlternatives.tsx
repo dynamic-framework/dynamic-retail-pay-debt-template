@@ -4,19 +4,21 @@ import {
   DModal,
   DModalBody,
   DQuickActionButton,
-  useModalContext,
 } from '@dynamic-framework/ui-react';
 
-export default function ModalPaymentAlternatives() {
+import type { ModalProps } from '@dynamic-framework/ui-react';
+
+import type { ModalAvailablePayload } from '../interface';
+
+export default function ModalPaymentAlternatives({ closeModal }: ModalProps<ModalAvailablePayload['paymentAlternatives']>) {
   const { t } = useTranslation();
-  const { closeModal } = useModalContext();
 
   return (
     <DModal
       name="paymentAlternatives"
       className="d-block"
-      isCentered
-      isStatic
+      centered
+      staticBackdrop
     >
       <DModalBody>
         <div className="payment-alternatives m-4 mb-0 d-flex flex-column">
@@ -37,7 +39,7 @@ export default function ModalPaymentAlternatives() {
           <DButton
             text={t('button.cancel')}
             theme="primary"
-            isPill
+            pill
             onClick={() => closeModal()}
           />
         </div>
