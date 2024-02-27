@@ -1,6 +1,6 @@
 import type { GenericAbortSignal } from 'axios';
 
-import ApiClient from '../clients/ApiClient';
+import ApiClient from '../clients/apiClient';
 import accountMapper from '../mappers/accountMapper';
 
 import type { ApiAccount } from '../api-interface';
