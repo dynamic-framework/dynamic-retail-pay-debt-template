@@ -42,13 +42,13 @@ export default function ModalAutoDebt(
           {isActive ? t('modal.automaticDebt.offTitle') : t('modal.automaticDebt.onTitle')}
         </h4>
       </DModalHeader>
-      <DModalBody>
-        <div className="bg-gray-soft mx-4 p-3 rounded-1">
+      <DModalBody className="pt-0">
+        <div className="bg-gray-soft p-3 rounded-1">
           {!isActive
             ? <p className="">{t('modal.automaticDebt.onBody', { accountId })}</p>
             : <p className="">{t('modal.automaticDebt.offBody', { accountId })}</p>}
         </div>
-        <div className="mx-4 p-3 pb-6">
+        <div className="mx-4 pt-3">
           {!isActive
             ? <p>{t('modal.automaticDebt.onAuthorize')}</p>
             : <p>{t('modal.automaticDebt.offAuthorize')}</p>}
