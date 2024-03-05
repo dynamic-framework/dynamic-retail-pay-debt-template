@@ -16,7 +16,6 @@ import store from './store/store';
 import ModalPaymentAlternatives from './components/ModalPaymentAlternatives';
 import ModalConfirmPayment from './components/ModalConfirmPayment';
 import ModalAutoDebt from './components/ModalAutoDebt';
-import { SITE_LANG, VARS_CURRENCY } from './config/widgetConfig';
 
 import '@dynamic-framework/ui-react/dist/css/dynamic-ui.css';
 import './styles/base.scss';
@@ -26,10 +25,7 @@ import type { ModalAvailablePayload } from './interface';
 const root = ReactDOM.createRoot(document.getElementById('payDebtTemplate') as Element);
 root.render(
   <React.StrictMode>
-    <DContextProvider
-      language={SITE_LANG}
-      currency={VARS_CURRENCY}
-    >
+    <DContextProvider>
       <Provider store={store}>
         <DModalContextProvider<ModalAvailablePayload>
           portalName="modalPortal"
