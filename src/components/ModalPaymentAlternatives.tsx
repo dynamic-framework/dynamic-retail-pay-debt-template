@@ -20,7 +20,7 @@ export default function ModalPaymentAlternatives({ closeModal }: ModalProps<Moda
       centered
       staticBackdrop
     >
-      <DModalBody>
+      <DModalBody className="p-0">
         <div className="payment-alternatives m-4 mb-0 d-flex flex-column">
           <DQuickActionButton
             line1={t('modal.paymentAlternatives.skip')}
