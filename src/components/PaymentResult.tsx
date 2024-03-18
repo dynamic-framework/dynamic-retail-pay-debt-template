@@ -13,7 +13,7 @@ import {
   getResult,
 } from '../store/selectors';
 import errorHandler from '../utils/errorHandler';
-import WidgetUtils from '../utils/widgetUtils';
+import useWidgetUtils from '../hooks/useWidgetUtils';
 import useScreenshotWebShare from '../hooks/useScreenshotWebShare';
 import useScreenshotDownload from '../hooks/useScreenshotDownload';
 
@@ -29,10 +29,10 @@ export default function PaymentResult() {
 
   const { format } = useFormatCurrency();
   const amountUsedFormatted = format(amountUsed);
-  const { goToPath } = WidgetUtils();
+  const { navigateTo } = useWidgetUtils();
 
   const redirectToDashboard = () => {
-    goToPath('PAYMENTS');
+    navigateTo('PAYMENTS');
   };
 
   return (
