@@ -74,7 +74,7 @@
     "clear": "node .config/clear.mjs",
     "start": "webpack serve --mode development --config .config/webpack.js",
     "build": "npm run clear && NODE_ENV=production webpack build --mode production --config .config/webpack.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
+    "test": "jest --passWithNoTests",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests --watch",
     "eslint": "eslint src/**/*{.ts,.tsx}",
     "stylelint": "stylelint \"src/**/*.{css,scss}\" --rd",
