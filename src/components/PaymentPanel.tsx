@@ -78,12 +78,13 @@ export default function PaymentPanel() {
 
   return (
     <>
-      <div className="py-3">
-        <div className="d-flex flex-column gap-3 mx-auto">
+      <div className="py-4">
+        <div className="d-flex flex-column gap-4 mx-auto">
           <DQuickActionSelect
             {...debt.minimumPayment === amount && { isSelected: true }}
             id="minimumOption"
             name="paymentOption"
+            className="align-items-start gap-0"
             line1={t('shortcuts.minimum')}
             line2={minimumPayment}
             value="minimumOption"
@@ -92,6 +93,7 @@ export default function PaymentPanel() {
           {shortcut === 'minimumOption' && (
             <DQuickActionSwitch
               id="automaticDebt"
+              className="align-items-start gap-0"
               label={t('shortcuts.automaticDebt.title')}
               hint={t('shortcuts.automaticDebt.subtext')}
               checked={isAutoDebt}
@@ -103,6 +105,7 @@ export default function PaymentPanel() {
           <DQuickActionSelect
             id="otherAmountOption"
             name="paymentOption"
+            className="align-items-start gap-0"
             line1={t('shortcuts.other')}
             line2={t('shortcuts.amount')}
             value="otherAmount"
@@ -123,6 +126,7 @@ export default function PaymentPanel() {
             {...debt.totalPayment === amount && { isSelected: true }}
             id="totalOption"
             name="paymentOption"
+            className="align-items-start gap-0"
             line1={t('shortcuts.total')}
             line2={totalPayment}
             value="totalOption"
@@ -140,7 +144,6 @@ export default function PaymentPanel() {
       <div className="d-flex justify-content-center">
         <DButton
           text={t('button.pay')}
-          pill
           theme="primary"
           onClick={handlePaymentClick}
         />

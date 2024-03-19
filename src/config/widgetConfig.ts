@@ -14,3 +14,8 @@ export const SITE_PATH = {
 };
 
 export type SitePath = keyof typeof SITE_PATH;
+
+export const CONTEXT_CONFIG = {
+  language: SITE_LANG,
+  currency: VARS_CURRENCY,
+};

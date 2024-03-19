@@ -21,7 +21,7 @@ export default function ModalPaymentAlternatives({ closeModal }: ModalProps<Moda
       staticBackdrop
     >
       <DModalBody className="p-0">
-        <div className="payment-alternatives m-4 mb-0 d-flex flex-column">
+        <div className="payment-alternatives m-6 mb-0 d-flex flex-column">
           <DQuickActionButton
             line1={t('modal.paymentAlternatives.skip')}
             line2={t('modal.paymentAlternatives.skipLabel')}
@@ -35,11 +35,10 @@ export default function ModalPaymentAlternatives({ closeModal }: ModalProps<Moda
             line2={t('modal.paymentAlternatives.renegotiateLabel')}
           />
         </div>
-        <div className="m-4 d-flex justify-content-center">
+        <div className="m-6 d-flex justify-content-center">
           <DButton
             text={t('button.cancel')}
             theme="primary"
-            pill
             onClick={() => closeModal()}
           />
         </div>

@@ -12,6 +12,7 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import type { ModalProps } from '@dynamic-framework/ui-react';
 
+import classNames from 'classnames';
 import { useAppSelector } from '../store/hooks';
 import { getAmountUsed, getSelectedAccount } from '../store/selectors';
 import usePayLoan from '../services/hooks/usePayLoan';
@@ -80,9 +81,15 @@ export default function ModalConfirmPayment(
         </h4>
       </DModalHeader>
       <DModalBody>
-        <div className="bg-gray-soft p-3 rounded-1">
-          <p className={isAutoDebt ? 'pb-3' : ''}>{confirmationBody}</p>
-          <p>
+        <div className="bg-gray-soft p-4 rounded-1">
+          <p className={classNames({
+            'mb-0': true,
+            'pb-4': isAutoDebt,
+          })}
+          >
+            {confirmationBody}
+          </p>
+          <p className="mb-0">
             {isAutoDebt
               ? t('modal.pay.autoDebt')
               : t('modal.pay.instantly')}
@@ -95,7 +102,6 @@ export default function ModalConfirmPayment(
           text={t('button.cancel')}
           theme="secondary"
           variant="outline"
-          pill
           onClick={() => closeModal()}
         />
         <DButton
@@ -103,7 +109,6 @@ export default function ModalConfirmPayment(
           loading={loading}
           text={t('button.pay')}
           theme="primary"
-          pill
           onClick={handlePaid}
         />
       </DModalFooter>
