@@ -102,7 +102,6 @@ export default function ModalConfirmPayment(
           text={t('button.cancel')}
           theme="secondary"
           variant="outline"
-          pill
           onClick={() => closeModal()}
         />
         <DButton
@@ -110,7 +109,6 @@ export default function ModalConfirmPayment(
           loading={loading}
           text={t('button.pay')}
           theme="primary"
-          pill
           onClick={handlePaid}
         />
       </DModalFooter>

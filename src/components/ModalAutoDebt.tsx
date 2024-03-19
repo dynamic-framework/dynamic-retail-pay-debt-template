@@ -58,7 +58,6 @@ export default function ModalAutoDebt(
         <DButton
           className="flex-1 d-grid"
           text={t('button.cancel')}
-          pill
           theme="secondary"
           variant="outline"
           onClick={() => closeModal()}
@@ -66,7 +65,6 @@ export default function ModalAutoDebt(
         <DButton
           className="flex-1 d-grid"
           text={isActive ? t('button.suspend') : t('button.authorize')}
-          pill
           onClick={() => {
             onAccept(!isActive);
             closeModal();

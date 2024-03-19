@@ -140,7 +140,6 @@ export default function PaymentPanel() {
       <div className="d-flex justify-content-center">
         <DButton
           text={t('button.pay')}
-          pill
           theme="primary"
           onClick={handlePaymentClick}
         />

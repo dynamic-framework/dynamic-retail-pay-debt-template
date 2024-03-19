@@ -39,7 +39,6 @@ export default function ModalPaymentAlternatives({ closeModal }: ModalProps<Moda
           <DButton
             text={t('button.cancel')}
             theme="primary"
-            pill
             onClick={() => closeModal()}
           />
         </div>
