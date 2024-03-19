@@ -6,16 +6,13 @@ import { getIsPaid } from './store/selectors';
 import PaymentResult from './components/PaymentResult';
 import Payment from './components/Payment';
 import useLoanAccountEffect from './services/hooks/useLoanAccountEffect';
-import { SITE_LANG, VARS_CURRENCY } from './config/widgetConfig';
+import { CONTEXT_CONFIG } from './config/widgetConfig';
 
 export default function App() {
   const { setContext } = useDContext();
 
   useEffect(() => {
-    setContext({
-      language: SITE_LANG,
-      currency: VARS_CURRENCY,
-    });
+    setContext(CONTEXT_CONFIG);
   }, [setContext]);
 
   useLoanAccountEffect();
