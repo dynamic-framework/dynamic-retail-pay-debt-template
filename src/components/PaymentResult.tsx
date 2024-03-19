@@ -61,7 +61,7 @@ export default function PaymentResult() {
                 <p className="text-gray fw-bold fs-3 mb-2">
                   {amountUsedFormatted}
                 </p>
-                <p className="subparagraph">
+                <p className="sp mb-0">
                   {t('result.moneyPaid')}
                 </p>
               </div>
@@ -85,7 +85,7 @@ export default function PaymentResult() {
           {!paymentDone && (
             <>
               <div className="text-center px-4 py-2 bg-light rounded-1">
-                <p>
+                <p className="mb-0">
                   {t('result.payErrorMessage', {
                     message: result?.name,
                   })}

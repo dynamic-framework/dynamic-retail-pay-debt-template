@@ -12,6 +12,7 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import type { ModalProps } from '@dynamic-framework/ui-react';
 
+import classNames from 'classnames';
 import { useAppSelector } from '../store/hooks';
 import { getAmountUsed, getSelectedAccount } from '../store/selectors';
 import usePayLoan from '../services/hooks/usePayLoan';
@@ -81,8 +82,14 @@ export default function ModalConfirmPayment(
       </DModalHeader>
       <DModalBody>
         <div className="bg-gray-soft p-4 rounded-1">
-          <p className={isAutoDebt ? 'pb-4' : ''}>{confirmationBody}</p>
-          <p>
+          <p className={classNames({
+            'mb-0': true,
+            'pb-4': isAutoDebt,
+          })}
+          >
+            {confirmationBody}
+          </p>
+          <p className="mb-0">
             {isAutoDebt
               ? t('modal.pay.autoDebt')
               : t('modal.pay.instantly')}
