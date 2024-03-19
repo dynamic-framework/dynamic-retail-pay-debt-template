@@ -22,7 +22,7 @@ export default function App() {
   const isPaid = useAppSelector(getIsPaid);
 
   return (
-    <div className="row justify-content-center py-3">
+    <div className="row justify-content-center py-4">
       <div className="col-lg-8 col-xl-6">
         {!isPaid ? <Payment /> : <PaymentResult />}
       </div>

@@ -46,12 +46,12 @@ export default function Payment() {
   );
 
   return (
-    <div className="p-3 bg-white rounded shadow-sm">
-      <h6 className="text-gray-700 fw-bold pb-3">{t('paymentTitle')}</h6>
+    <div className="p-4 bg-white rounded shadow-sm">
+      <h6 className="text-gray-700 fw-bold pb-4">{t('paymentTitle')}</h6>
       {(!accountToPay || !accounts.length) && <SkeletonLoader />}
       {accountToPay && (
         <>
-          <div className="d-flex flex-column gap-2 bg-indigo-soft p-3 mb-3 rounded-1">
+          <div className="d-flex flex-column gap-2 bg-indigo-soft p-4 mb-4 rounded-1">
             <div className="d-flex justify-content-between">
               <span>{t('paymentDate')}</span>
               <span>

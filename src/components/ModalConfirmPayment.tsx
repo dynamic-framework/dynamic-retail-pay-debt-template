@@ -80,8 +80,8 @@ export default function ModalConfirmPayment(
         </h4>
       </DModalHeader>
       <DModalBody>
-        <div className="bg-gray-soft p-3 rounded-1">
-          <p className={isAutoDebt ? 'pb-3' : ''}>{confirmationBody}</p>
+        <div className="bg-gray-soft p-4 rounded-1">
+          <p className={isAutoDebt ? 'pb-4' : ''}>{confirmationBody}</p>
           <p>
             {isAutoDebt
               ? t('modal.pay.autoDebt')

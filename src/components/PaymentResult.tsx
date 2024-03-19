@@ -36,10 +36,10 @@ export default function PaymentResult() {
   };
 
   return (
-    <div className="bg-white rounded shadow-sm p-4">
-      <div className="d-flex flex-column align-items-center gap-4">
+    <div className="bg-white rounded shadow-sm p-6">
+      <div className="d-flex flex-column align-items-center gap-6">
         <div
-          className="d-flex flex-column gap-4 bg-white rounded w-100"
+          className="d-flex flex-column gap-6 bg-white rounded w-100"
           ref={(el) => {
             shareRef.current = el;
             downloadRef.current = el;
@@ -57,7 +57,7 @@ export default function PaymentResult() {
           </div>
           {paymentDone && (
             <>
-              <div className="text-center px-2 py-3 bg-light rounded-1">
+              <div className="text-center px-2 py-4 bg-light rounded-1">
                 <p className="text-gray fw-bold fs-3 mb-2">
                   {amountUsedFormatted}
                 </p>
@@ -66,7 +66,7 @@ export default function PaymentResult() {
                 </p>
               </div>
               <hr className="m-0" />
-              <div className="d-flex flex-column px-3 gap-2">
+              <div className="d-flex flex-column px-4 gap-2">
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.paidTo')}</div>
                   <div className="col-6 text-end">{`${accountToPay?.name ?? ''} ${accountToPay?.accountNumber.slice(-3) ?? ''}`}</div>
@@ -84,7 +84,7 @@ export default function PaymentResult() {
           )}
           {!paymentDone && (
             <>
-              <div className="text-center px-3 py-2 bg-light rounded-1">
+              <div className="text-center px-4 py-2 bg-light rounded-1">
                 <p>
                   {t('result.payErrorMessage', {
                     message: result?.name,
@@ -92,7 +92,7 @@ export default function PaymentResult() {
                 </p>
               </div>
               <hr className="m-0" />
-              <div className="d-flex flex-column px-3 gap-2">
+              <div className="d-flex flex-column px-4 gap-2">
                 <div className="row">
                   <div className="col-6 text-light-emphasis">{t('result.paidTo')}</div>
                   <div className="col-6 text-end">{`${accountToPay?.name ?? ''} ${accountToPay?.accountNumber.slice(-3) ?? ''}`}</div>
@@ -108,7 +108,7 @@ export default function PaymentResult() {
               </div>
             </>
           )}
-          <div className="d-flex gap-3 align-items-center justify-content-center">
+          <div className="d-flex gap-4 align-items-center justify-content-center">
             <DIcon
               theme="secondary"
               icon="shield-check"
@@ -146,7 +146,7 @@ export default function PaymentResult() {
             />
           </div>
         </div>
-        <div className="d-flex justify-content-center align-items-center gap-4 w-100">
+        <div className="d-flex justify-content-center align-items-center gap-6 w-100">
           {!paymentDone && (
             <DButton
               className="flex-1 d-grid"

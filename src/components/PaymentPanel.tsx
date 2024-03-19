@@ -78,8 +78,8 @@ export default function PaymentPanel() {
 
   return (
     <>
-      <div className="py-3">
-        <div className="d-flex flex-column gap-3 mx-auto">
+      <div className="py-4">
+        <div className="d-flex flex-column gap-4 mx-auto">
           <DQuickActionSelect
             {...debt.minimumPayment === amount && { isSelected: true }}
             id="minimumOption"
