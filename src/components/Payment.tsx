@@ -51,7 +51,7 @@ export default function Payment() {
       {(!accountToPay || !accounts.length) && <SkeletonLoader />}
       {accountToPay && (
         <>
-          <div className="d-flex flex-column gap-2 bg-indigo-soft p-4 mb-4 rounded-1">
+          <div className="d-flex flex-column gap-2 bg-secondary-soft p-4 mb-4 rounded-1">
             <div className="d-flex justify-content-between">
               <span>{t('paymentDate')}</span>
               <span>
