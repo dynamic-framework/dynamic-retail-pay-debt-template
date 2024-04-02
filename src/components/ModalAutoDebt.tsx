@@ -43,22 +43,21 @@ export default function ModalAutoDebt(
         </h4>
       </DModalHeader>
       <DModalBody className="pt-0">
-        <div className="bg-gray-soft p-3 rounded-1">
+        <div className="bg-gray-soft p-4 rounded-1">
           {!isActive
-            ? <p className="">{t('modal.automaticDebt.onBody', { accountId })}</p>
-            : <p className="">{t('modal.automaticDebt.offBody', { accountId })}</p>}
+            ? <p className="mb-0">{t('modal.automaticDebt.onBody', { accountId })}</p>
+            : <p className="mb-0">{t('modal.automaticDebt.offBody', { accountId })}</p>}
         </div>
-        <div className="mx-4 pt-3">
+        <div className="mx-6 pt-4">
           {!isActive
-            ? <p>{t('modal.automaticDebt.onAuthorize')}</p>
-            : <p>{t('modal.automaticDebt.offAuthorize')}</p>}
+            ? <p className="mb-0">{t('modal.automaticDebt.onAuthorize')}</p>
+            : <p className="mb-0">{t('modal.automaticDebt.offAuthorize')}</p>}
         </div>
       </DModalBody>
       <DModalFooter>
         <DButton
           className="flex-1 d-grid"
           text={t('button.cancel')}
-          pill
           theme="secondary"
           variant="outline"
           onClick={() => closeModal()}
@@ -66,7 +65,6 @@ export default function ModalAutoDebt(
         <DButton
           className="flex-1 d-grid"
           text={isActive ? t('button.suspend') : t('button.authorize')}
-          pill
           onClick={() => {
             onAccept(!isActive);
             closeModal();
