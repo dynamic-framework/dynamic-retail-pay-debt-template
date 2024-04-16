@@ -3,8 +3,8 @@ import { useState } from 'react';
 import {
   DButton,
   useFormatCurrency,
-  useDModalContext,
-  useToast,
+  useDPortalContext,
+  useDToast,
   DQuickActionButton,
   DInputCurrency,
   DQuickActionSelect,
@@ -23,8 +23,8 @@ import type { ModalAvailablePayload } from '../interface';
 
 export default function PaymentPanel() {
   const { t } = useTranslation();
-  const { openModal } = useDModalContext<ModalAvailablePayload>();
-  const { toast } = useToast();
+  const { openPortal } = useDPortalContext<ModalAvailablePayload>();
+  const { toast } = useDToast();
   const selectedAccount = useAppSelector(getSelectedAccount);
   const debt = useAppSelector(getDebt);
 
@@ -65,7 +65,7 @@ export default function PaymentPanel() {
     } else if (amount && selectedAccount && amount > selectedAccount.balanceAvailable) {
       openToast('toast.insufficient');
     } else {
-      openModal('confirmPayment', {
+      openPortal('confirmPayment', {
         isAutoDebt,
         paymentType: shortcut,
       });
@@ -98,7 +98,7 @@ export default function PaymentPanel() {
               hint={t('shortcuts.automaticDebt.subtext')}
               checked={isAutoDebt}
               onClick={() => {
-                openModal('autoDebt', { onAccept: setIsAutoDebt, isActive: isAutoDebt });
+                openPortal('autoDebt', { onAccept: setIsAutoDebt, isActive: isAutoDebt });
               }}
             />
           )}
@@ -137,7 +137,7 @@ export default function PaymentPanel() {
             representativeIcon="credit-card"
             line1={t('shortcuts.paymentAlternatives')}
             line2={t('paymentAlternatives.subtext')}
-            onClick={() => openModal('paymentAlternatives', undefined)}
+            onClick={() => openPortal('paymentAlternatives', undefined)}
           />
         </div>
       </div>

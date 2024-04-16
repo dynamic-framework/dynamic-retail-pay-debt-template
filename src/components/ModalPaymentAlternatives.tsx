@@ -4,14 +4,12 @@ import {
   DModal,
   DModalBody,
   DQuickActionButton,
+  useDPortalContext,
 } from '@dynamic-framework/ui-react';
 
-import type { ModalProps } from '@dynamic-framework/ui-react';
-
-import type { ModalAvailablePayload } from '../interface';
-
-export default function ModalPaymentAlternatives({ closeModal }: ModalProps<ModalAvailablePayload['paymentAlternatives']>) {
+export default function ModalPaymentAlternatives() {
   const { t } = useTranslation();
+  const { closePortal } = useDPortalContext();
 
   return (
     <DModal
@@ -39,7 +37,7 @@ export default function ModalPaymentAlternatives({ closeModal }: ModalProps<Moda
           <DButton
             text={t('button.cancel')}
             theme="primary"
-            onClick={() => closeModal()}
+            onClick={() => closePortal()}
           />
         </div>
       </DModalBody>
