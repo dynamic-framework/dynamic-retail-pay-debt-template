@@ -13,7 +13,7 @@ export default function ModalPaymentAlternatives() {
 
   return (
     <DModal
-      name="paymentAlternatives"
+      name="paymentAlternativesModal"
       className="d-block"
       centered
       staticBackdrop
@@ -37,7 +37,7 @@ export default function ModalPaymentAlternatives() {
           <DButton
             text={t('button.cancel')}
             theme="primary"
-            onClick={() => closePortal()}
+            onClick={closePortal}
           />
         </div>
       </DModalBody>

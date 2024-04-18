@@ -18,7 +18,7 @@ import { useAppSelector } from '../store/hooks';
 import { getAmountUsed, getSelectedAccount } from '../store/selectors';
 import usePayLoan from '../services/hooks/usePayLoan';
 
-import type { ModalAvailablePayload } from '../interface';
+import type { PortalAvailablePayload } from '../interface';
 
 const KEYS_PAYMENT_MESSAGE: Record<string, string> = {
   minimumOption: 'modal.pay.minimum',
@@ -32,7 +32,7 @@ export default function ModalConfirmPayment(
       isAutoDebt,
       paymentType,
     },
-  }: PortalProps<ModalAvailablePayload['confirmPayment']>,
+  }: PortalProps<PortalAvailablePayload['confirmPaymentModal']>,
 ) {
   const { t } = useTranslation();
   const { closePortal } = useDPortalContext();
@@ -75,7 +75,7 @@ export default function ModalConfirmPayment(
     >
       <DModalHeader
         showCloseButton
-        onClose={() => closePortal()}
+        onClose={closePortal}
       >
         <h4 className="fw-bold fs-5">
           {t('modal.pay.title', { amount: amountUsedFormatted })}
@@ -103,7 +103,7 @@ export default function ModalConfirmPayment(
           text={t('button.cancel')}
           theme="secondary"
           variant="outline"
-          onClick={() => closePortal()}
+          onClick={closePortal}
         />
         <DButton
           className="d-grid"

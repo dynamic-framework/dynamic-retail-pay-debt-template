@@ -19,11 +19,11 @@ import {
   getDebt,
 } from '../store/selectors';
 
-import type { ModalAvailablePayload } from '../interface';
+import type { PortalAvailablePayload } from '../interface';
 
 export default function PaymentPanel() {
   const { t } = useTranslation();
-  const { openPortal } = useDPortalContext<ModalAvailablePayload>();
+  const { openPortal } = useDPortalContext<PortalAvailablePayload>();
   const { toast } = useDToast();
   const selectedAccount = useAppSelector(getSelectedAccount);
   const debt = useAppSelector(getDebt);
@@ -65,7 +65,7 @@ export default function PaymentPanel() {
     } else if (amount && selectedAccount && amount > selectedAccount.balanceAvailable) {
       openToast('toast.insufficient');
     } else {
-      openPortal('confirmPayment', {
+      openPortal('confirmPaymentModal', {
         isAutoDebt,
         paymentType: shortcut,
       });
@@ -98,7 +98,7 @@ export default function PaymentPanel() {
               hint={t('shortcuts.automaticDebt.subtext')}
               checked={isAutoDebt}
               onClick={() => {
-                openPortal('autoDebt', { onAccept: setIsAutoDebt, isActive: isAutoDebt });
+                openPortal('autoDebtModal', { onAccept: setIsAutoDebt, isActive: isAutoDebt });
               }}
             />
           )}
@@ -137,7 +137,7 @@ export default function PaymentPanel() {
             representativeIcon="credit-card"
             line1={t('shortcuts.paymentAlternatives')}
             line2={t('paymentAlternatives.subtext')}
-            onClick={() => openPortal('paymentAlternatives', undefined)}
+            onClick={() => openPortal('paymentAlternativesModal', undefined)}
           />
         </div>
       </div>

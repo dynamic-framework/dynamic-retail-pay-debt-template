@@ -14,7 +14,7 @@ import type { PortalProps } from '@dynamic-framework/ui-react';
 import { getSelectedAccount } from '../store/selectors';
 import { useAppSelector } from '../store/hooks';
 
-import type { ModalAvailablePayload } from '../interface';
+import type { PortalAvailablePayload } from '../interface';
 
 export default function ModalAutoDebt(
   {
@@ -22,7 +22,7 @@ export default function ModalAutoDebt(
       isActive,
       onAccept,
     },
-  }: PortalProps<ModalAvailablePayload['autoDebt']>,
+  }: PortalProps<PortalAvailablePayload['autoDebtModal']>,
 ) {
   const { t } = useTranslation();
   const { closePortal } = useDPortalContext();
@@ -30,14 +30,14 @@ export default function ModalAutoDebt(
   const accountId = useMemo(() => account?.accountNumber.slice(-3), [account]);
   return (
     <DModal
-      name="autoDebt"
+      name="autoDebtModal"
       centered
       staticBackdrop
       className="d-block"
     >
       <DModalHeader
         showCloseButton
-        onClose={() => closePortal()}
+        onClose={closePortal}
       >
         <h4 className="fw-bold">
           {isActive ? t('modal.automaticDebt.offTitle') : t('modal.automaticDebt.onTitle')}
@@ -61,7 +61,7 @@ export default function ModalAutoDebt(
           text={t('button.cancel')}
           theme="secondary"
           variant="outline"
-          onClick={() => closePortal()}
+          onClick={closePortal}
         />
         <DButton
           className="flex-1 d-grid"

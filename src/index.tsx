@@ -19,16 +19,18 @@ import ModalAutoDebt from './components/ModalAutoDebt';
 import '@dynamic-framework/ui-react/dist/css/dynamic-ui.css';
 import './styles/base.scss';
 
+import type { PortalAvailablePayload } from './interface';
+
 const root = ReactDOM.createRoot(document.getElementById('payDebtTemplate') as Element);
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <DContextProvider
+      <DContextProvider<PortalAvailablePayload>
         portalName="modalPortal"
         availablePortals={{
-          confirmPayment: ModalConfirmPayment,
-          paymentAlternatives: ModalPaymentAlternatives,
-          autoDebt: ModalAutoDebt,
+          confirmPaymentModal: ModalConfirmPayment,
+          paymentAlternativesModal: ModalPaymentAlternatives,
+          autoDebtModal: ModalAutoDebt,
         }}
       >
         <App />
