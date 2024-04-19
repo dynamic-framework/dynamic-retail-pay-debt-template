@@ -7,17 +7,18 @@ import {
   DModalBody,
   DModalFooter,
   useFormatCurrency,
+  useDPortalContext,
 } from '@dynamic-framework/ui-react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import type { ModalProps } from '@dynamic-framework/ui-react';
+import type { PortalProps } from '@dynamic-framework/ui-react';
 
 import classNames from 'classnames';
 import { useAppSelector } from '../store/hooks';
 import { getAmountUsed, getSelectedAccount } from '../store/selectors';
 import usePayLoan from '../services/hooks/usePayLoan';
 
-import type { ModalAvailablePayload } from '../interface';
+import type { PortalAvailablePayload } from '../interface';
 
 const KEYS_PAYMENT_MESSAGE: Record<string, string> = {
   minimumOption: 'modal.pay.minimum',
@@ -27,14 +28,14 @@ const KEYS_PAYMENT_MESSAGE: Record<string, string> = {
 
 export default function ModalConfirmPayment(
   {
-    closeModal,
     payload: {
       isAutoDebt,
       paymentType,
     },
-  }: ModalProps<ModalAvailablePayload['confirmPayment']>,
+  }: PortalProps<PortalAvailablePayload['confirmPaymentModal']>,
 ) {
   const { t } = useTranslation();
+  const { closePortal } = useDPortalContext();
   const amountUsed = useAppSelector(getAmountUsed);
   const selectedAccount = useAppSelector(getSelectedAccount);
   const { loading, callback: payDebt } = usePayLoan();
@@ -47,7 +48,7 @@ export default function ModalConfirmPayment(
 
   const handlePaid = async () => {
     await payDebt();
-    closeModal();
+    closePortal();
   };
 
   const confirmationBody = useMemo(() => {
@@ -74,7 +75,7 @@ export default function ModalConfirmPayment(
     >
       <DModalHeader
         showCloseButton
-        onClose={() => closeModal()}
+        onClose={closePortal}
       >
         <h4 className="fw-bold fs-5">
           {t('modal.pay.title', { amount: amountUsedFormatted })}
@@ -102,7 +103,7 @@ export default function ModalConfirmPayment(
           text={t('button.cancel')}
           theme="secondary"
           variant="outline"
-          onClick={() => closeModal()}
+          onClick={closePortal}
         />
         <DButton
           className="d-grid"

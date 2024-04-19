@@ -5,38 +5,39 @@ import {
   DModalHeader,
   DModalBody,
   DModalFooter,
+  useDPortalContext,
 } from '@dynamic-framework/ui-react';
 import { useMemo } from 'react';
 
-import type { ModalProps } from '@dynamic-framework/ui-react';
+import type { PortalProps } from '@dynamic-framework/ui-react';
 
 import { getSelectedAccount } from '../store/selectors';
 import { useAppSelector } from '../store/hooks';
 
-import type { ModalAvailablePayload } from '../interface';
+import type { PortalAvailablePayload } from '../interface';
 
 export default function ModalAutoDebt(
   {
-    closeModal,
     payload: {
       isActive,
       onAccept,
     },
-  }: ModalProps<ModalAvailablePayload['autoDebt']>,
+  }: PortalProps<PortalAvailablePayload['autoDebtModal']>,
 ) {
   const { t } = useTranslation();
+  const { closePortal } = useDPortalContext();
   const account = useAppSelector(getSelectedAccount);
   const accountId = useMemo(() => account?.accountNumber.slice(-3), [account]);
   return (
     <DModal
-      name="autoDebt"
+      name="autoDebtModal"
       centered
       staticBackdrop
       className="d-block"
     >
       <DModalHeader
         showCloseButton
-        onClose={() => closeModal()}
+        onClose={closePortal}
       >
         <h4 className="fw-bold">
           {isActive ? t('modal.automaticDebt.offTitle') : t('modal.automaticDebt.onTitle')}
@@ -60,14 +61,14 @@ export default function ModalAutoDebt(
           text={t('button.cancel')}
           theme="secondary"
           variant="outline"
-          onClick={() => closeModal()}
+          onClick={closePortal}
         />
         <DButton
           className="flex-1 d-grid"
           text={isActive ? t('button.suspend') : t('button.authorize')}
           onClick={() => {
             onAccept(!isActive);
-            closeModal();
+            closePortal();
           }}
         />
       </DModalFooter>
