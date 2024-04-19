@@ -32,7 +32,7 @@ export default function ModalConfirmPayment(
       isAutoDebt,
       paymentType,
     },
-  }: PortalProps<PortalAvailablePayload['confirmPaymentModal']>,
+  }: PortalProps<PortalAvailablePayload['modalConfirmPayment']>,
 ) {
   const { t } = useTranslation();
   const { closePortal } = useDPortalContext();
