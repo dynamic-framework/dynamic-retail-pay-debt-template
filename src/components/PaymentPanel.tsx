@@ -3,8 +3,8 @@ import { useState } from 'react';
 import {
   DButton,
   useFormatCurrency,
-  useModalContext,
-  useToast,
+  useDPortalContext,
+  useDToast,
   DQuickActionButton,
   DInputCurrency,
   DQuickActionSelect,
@@ -19,10 +19,12 @@ import {
   getDebt,
 } from '../store/selectors';
 
+import type { PortalAvailablePayload } from '../interface';
+
 export default function PaymentPanel() {
   const { t } = useTranslation();
-  const { openModal } = useModalContext();
-  const { toast } = useToast();
+  const { openPortal } = useDPortalContext<PortalAvailablePayload>();
+  const { toast } = useDToast();
   const selectedAccount = useAppSelector(getSelectedAccount);
   const debt = useAppSelector(getDebt);
 
@@ -63,11 +65,9 @@ export default function PaymentPanel() {
     } else if (amount && selectedAccount && amount > selectedAccount.balanceAvailable) {
       openToast('toast.insufficient');
     } else {
-      openModal('confirmPayment', {
-        payload: {
-          isAutoDebt,
-          paymentType: shortcut,
-        },
+      openPortal('confirmPaymentModal', {
+        isAutoDebt,
+        paymentType: shortcut,
       });
     }
   };
@@ -78,12 +78,13 @@ export default function PaymentPanel() {
 
   return (
     <>
-      <div className="py-3">
-        <div className="d-flex flex-column gap-3 mx-auto">
+      <div className="py-4">
+        <div className="d-flex flex-column gap-4 mx-auto">
           <DQuickActionSelect
             {...debt.minimumPayment === amount && { isSelected: true }}
             id="minimumOption"
             name="paymentOption"
+            className="align-items-start gap-0"
             line1={t('shortcuts.minimum')}
             line2={minimumPayment}
             value="minimumOption"
@@ -92,17 +93,19 @@ export default function PaymentPanel() {
           {shortcut === 'minimumOption' && (
             <DQuickActionSwitch
               id="automaticDebt"
+              className="align-items-start gap-0"
               label={t('shortcuts.automaticDebt.title')}
               hint={t('shortcuts.automaticDebt.subtext')}
-              isChecked={isAutoDebt}
+              checked={isAutoDebt}
               onClick={() => {
-                openModal('autoDebt', { payload: { onAccept: setIsAutoDebt, isActive: isAutoDebt } });
+                openPortal('autoDebtModal', { onAccept: setIsAutoDebt, isActive: isAutoDebt });
               }}
             />
           )}
           <DQuickActionSelect
             id="otherAmountOption"
             name="paymentOption"
+            className="align-items-start gap-0"
             line1={t('shortcuts.other')}
             line2={t('shortcuts.amount')}
             value="otherAmount"
@@ -123,6 +126,7 @@ export default function PaymentPanel() {
             {...debt.totalPayment === amount && { isSelected: true }}
             id="totalOption"
             name="paymentOption"
+            className="align-items-start gap-0"
             line1={t('shortcuts.total')}
             line2={totalPayment}
             value="totalOption"
@@ -133,14 +137,13 @@ export default function PaymentPanel() {
             representativeIcon="credit-card"
             line1={t('shortcuts.paymentAlternatives')}
             line2={t('paymentAlternatives.subtext')}
-            onClick={() => openModal('paymentAlternatives')}
+            onClick={() => openPortal('paymentAlternativesModal', undefined)}
           />
         </div>
       </div>
       <div className="d-flex justify-content-center">
         <DButton
           text={t('button.pay')}
-          isPill
           theme="primary"
           onClick={handlePaymentClick}
         />

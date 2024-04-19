@@ -4,22 +4,22 @@ import {
   DModal,
   DModalBody,
   DQuickActionButton,
-  useModalContext,
+  useDPortalContext,
 } from '@dynamic-framework/ui-react';
 
 export default function ModalPaymentAlternatives() {
   const { t } = useTranslation();
-  const { closeModal } = useModalContext();
+  const { closePortal } = useDPortalContext();
 
   return (
     <DModal
-      name="paymentAlternatives"
+      name="paymentAlternativesModal"
       className="d-block"
-      isCentered
-      isStatic
+      centered
+      staticBackdrop
     >
-      <DModalBody>
-        <div className="payment-alternatives m-4 mb-0 d-flex flex-column">
+      <DModalBody className="p-0">
+        <div className="payment-alternatives m-6 mb-0 d-flex flex-column">
           <DQuickActionButton
             line1={t('modal.paymentAlternatives.skip')}
             line2={t('modal.paymentAlternatives.skipLabel')}
@@ -33,12 +33,11 @@ export default function ModalPaymentAlternatives() {
             line2={t('modal.paymentAlternatives.renegotiateLabel')}
           />
         </div>
-        <div className="m-4 d-flex justify-content-center">
+        <div className="m-6 d-flex justify-content-center">
           <DButton
             text={t('button.cancel')}
             theme="primary"
-            isPill
-            onClick={() => closeModal()}
+            onClick={closePortal}
           />
         </div>
       </DModalBody>

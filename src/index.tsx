@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import {
   DContextProvider,
-  ModalContextProvider,
   DToastContainer,
 } from '@dynamic-framework/ui-react';
 
@@ -23,24 +22,24 @@ if (process.env.NODE_ENV === 'development') {
 }
 require('./styles/base.scss');
 
+import type { PortalAvailablePayload } from './interface';
+
 const root = ReactDOM.createRoot(document.getElementById('payDebtTemplate') as Element);
 root.render(
   <React.StrictMode>
-    <DContextProvider>
-      <Provider store={store}>
-        <ModalContextProvider
-          portalName="modalPortal"
-          availableModals={{
-            confirmPayment: ModalConfirmPayment,
-            paymentAlternatives: ModalPaymentAlternatives,
-            autoDebt: ModalAutoDebt,
-          }}
-        >
-          <App />
-          <DToastContainer />
-        </ModalContextProvider>
-      </Provider>
-    </DContextProvider>
+    <Provider store={store}>
+      <DContextProvider<PortalAvailablePayload>
+        portalName="modalPortal"
+        availablePortals={{
+          confirmPaymentModal: ModalConfirmPayment,
+          paymentAlternativesModal: ModalPaymentAlternatives,
+          autoDebtModal: ModalAutoDebt,
+        }}
+      >
+        <App />
+        <DToastContainer />
+      </DContextProvider>
+    </Provider>
   </React.StrictMode>,
 );
 
