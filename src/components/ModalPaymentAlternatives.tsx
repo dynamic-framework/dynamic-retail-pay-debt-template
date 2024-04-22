@@ -13,7 +13,7 @@ export default function ModalPaymentAlternatives() {
 
   return (
     <DModal
-      name="paymentAlternativesModal"
+      name="modalPaymentAlternatives"
       className="d-block"
       centered
       staticBackdrop
