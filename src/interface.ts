@@ -1,11 +1,11 @@
 export type PortalAvailablePayload = {
-  autoDebtModal: {
+  modalAutoDebt: {
     isActive: boolean;
     onAccept: (autoDebt: boolean) => void;
   };
-  confirmPaymentModal: {
+  modalConfirmPayment: {
     isAutoDebt: boolean;
     paymentType: string;
   };
-  paymentAlternativesModal: undefined;
+  modalPaymentAlternatives: undefined;
 };

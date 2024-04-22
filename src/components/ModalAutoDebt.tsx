@@ -22,7 +22,7 @@ export default function ModalAutoDebt(
       isActive,
       onAccept,
     },
-  }: PortalProps<PortalAvailablePayload['autoDebtModal']>,
+  }: PortalProps<PortalAvailablePayload['modalAutoDebt']>,
 ) {
   const { t } = useTranslation();
   const { closePortal } = useDPortalContext();
@@ -30,7 +30,7 @@ export default function ModalAutoDebt(
   const accountId = useMemo(() => account?.accountNumber.slice(-3), [account]);
   return (
     <DModal
-      name="autoDebtModal"
+      name="modalAutoDebt"
       centered
       staticBackdrop
       className="d-block"

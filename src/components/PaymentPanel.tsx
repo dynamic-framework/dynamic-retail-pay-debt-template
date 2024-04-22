@@ -65,7 +65,7 @@ export default function PaymentPanel() {
     } else if (amount && selectedAccount && amount > selectedAccount.balanceAvailable) {
       openToast('toast.insufficient');
     } else {
-      openPortal('confirmPaymentModal', {
+      openPortal('modalConfirmPayment', {
         isAutoDebt,
         paymentType: shortcut,
       });
@@ -98,7 +98,7 @@ export default function PaymentPanel() {
               hint={t('shortcuts.automaticDebt.subtext')}
               checked={isAutoDebt}
               onClick={() => {
-                openPortal('autoDebtModal', { onAccept: setIsAutoDebt, isActive: isAutoDebt });
+                openPortal('modalAutoDebt', { onAccept: setIsAutoDebt, isActive: isAutoDebt });
               }}
             />
           )}
@@ -137,7 +137,7 @@ export default function PaymentPanel() {
             representativeIcon="credit-card"
             line1={t('shortcuts.paymentAlternatives')}
             line2={t('paymentAlternatives.subtext')}
-            onClick={() => openPortal('paymentAlternativesModal', undefined)}
+            onClick={() => openPortal('modalPaymentAlternatives', undefined)}
           />
         </div>
       </div>

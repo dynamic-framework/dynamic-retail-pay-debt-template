@@ -31,9 +31,9 @@ root.render(
       <DContextProvider<PortalAvailablePayload>
         portalName="modalPortal"
         availablePortals={{
-          confirmPaymentModal: ModalConfirmPayment,
-          paymentAlternativesModal: ModalPaymentAlternatives,
-          autoDebtModal: ModalAutoDebt,
+          modalConfirmPayment: ModalConfirmPayment,
+          modalPaymentAlternatives: ModalPaymentAlternatives,
+          modalAutoDebt: ModalAutoDebt,
         }}
       >
         <App />
