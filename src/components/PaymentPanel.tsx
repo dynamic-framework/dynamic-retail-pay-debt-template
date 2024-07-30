@@ -51,10 +51,15 @@ export default function PaymentPanel() {
   };
 
   const openToast = (key: string) => {
-    toast(t(key), {
-      type: 'info',
-      showClose: true,
-    });
+    toast(
+      {
+        title: t(key),
+        theme: 'info',
+      },
+      {
+        duration: 5000,
+      },
+    );
   };
 
   const handlePaymentClick = () => {
