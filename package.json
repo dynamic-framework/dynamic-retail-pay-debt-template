@@ -23,6 +23,7 @@
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.24.7",
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.2",
@@ -35,6 +36,7 @@
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
+    "babel-jest": "^29.7.0",
     "babel-loader": "^9.1.3",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
@@ -74,7 +76,7 @@
     "clear": "node .config/clear.mjs",
     "start": "webpack serve --mode development --config .config/webpack.js",
     "build": "npm run clear && NODE_ENV=production webpack build --mode production --config .config/webpack.js",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests",
+    "test": "jest --passWithNoTests",
     "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --passWithNoTests --watch",
     "eslint": "eslint src/**/*{.ts,.tsx}",
     "stylelint": "stylelint \"src/**/*.{css,scss}\" --rd",

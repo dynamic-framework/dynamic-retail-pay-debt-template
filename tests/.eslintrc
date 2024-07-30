@@ -1,15 +1,30 @@
 {
   "root": false,
   "parserOptions": {
-    "project": ["../tsconfig.spec.json"],
+    "project": [
+      "../tsconfig.spec.json"
+    ],
     "EXPERIMENTAL_useSourceOfProjectReferenceRedirect": true
   },
+  "overrides": [
+    {
+      "files": [
+        "tests/**/*"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ],
   "rules": {
-    "import/no-extraneous-dependencies": ["error", {
-      "devDependencies": true,
-      "optionalDependencies": false,
-      "peerDependencies": false
-    }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": false,
+        "peerDependencies": false
+      }
+    ],
     "@typescript-eslint/require-await": "off"
   }
 }
