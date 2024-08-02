@@ -2,13 +2,13 @@
 
 .pay-debt-template,
 .d-portal {
-  .payment-alternatives {
-    .d-quick-action-button {
-      --#{$prefix}quick-action-button-border-top: 0;
-      --#{$prefix}quick-action-button-border-right: 0;
-      --#{$prefix}quick-action-button-border-left: 0;
-      --#{$prefix}quick-action-button-border-radius: 0;
-      box-shadow: none;
-    }
+  .d-quick-action-button {
+    --#{$prefix}quick-action-button-hover-bg: var(--#{$prefix}secondary-100);
+  }
+
+  .d-quick-action-select {
+    --#{$prefix}quick-action-select-bg: var(--#{$prefix}secondary-soft);
+    --#{$prefix}quick-action-select-hover-bg: var(--#{$prefix}secondary-100);
+    box-shadow: none;
   }
 }
