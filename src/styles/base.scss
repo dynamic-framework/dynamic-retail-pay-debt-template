@@ -1,11 +1,14 @@
 @import "@dynamic-framework/ui-react/src/style/abstracts/+import";
 
-.payment-alternatives {
-  .d-quick-action-button {
-    --#{$prefix}quick-action-button-border-top: 0;
-    --#{$prefix}quick-action-button-border-right: 0;
-    --#{$prefix}quick-action-button-border-left: 0;
-    --#{$prefix}quick-action-button-border-radius: 0;
-    box-shadow: none;
+.pay-debt-template,
+.d-portal {
+  .payment-alternatives {
+    .d-quick-action-button {
+      --#{$prefix}quick-action-button-border-top: 0;
+      --#{$prefix}quick-action-button-border-right: 0;
+      --#{$prefix}quick-action-button-border-left: 0;
+      --#{$prefix}quick-action-button-border-radius: 0;
+      box-shadow: none;
+    }
   }
 }
