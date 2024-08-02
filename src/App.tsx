@@ -1,12 +1,12 @@
 import { useDContext } from '@dynamic-framework/ui-react';
 import { useEffect } from 'react';
+
+import Payment from './components/Payment';
+import PaymentResult from './components/PaymentResult';
+import { CONTEXT_CONFIG } from './config/widgetConfig';
+import useLoanAccountEffect from './services/hooks/useLoanAccountEffect';
 import { useAppSelector } from './store/hooks';
 import { getIsPaid } from './store/selectors';
-
-import PaymentResult from './components/PaymentResult';
-import Payment from './components/Payment';
-import useLoanAccountEffect from './services/hooks/useLoanAccountEffect';
-import { CONTEXT_CONFIG } from './config/widgetConfig';
 
 export default function App() {
   const { setContext } = useDContext();

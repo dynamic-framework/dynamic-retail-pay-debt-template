@@ -1,7 +1,7 @@
 import { GenericAbortSignal } from 'axios';
 
-import ApiClient from '../clients/apiClient';
 import { ApiTransaction } from '../api-interface';
+import ApiClient from '../clients/apiClient';
 import transactionMapper from '../mappers/transactionMapper';
 
 export async function payDebt(

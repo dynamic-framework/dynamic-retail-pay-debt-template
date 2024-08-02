@@ -1,5 +1,4 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import { useState } from 'react';
 import {
   DButton,
   useFormatCurrency,
@@ -10,16 +9,16 @@ import {
   DQuickActionSelect,
   DQuickActionSwitch,
 } from '@dynamic-framework/ui-react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import usePaymentInput from '../hooks/usePaymentInput';
+import type { PortalAvailablePayload } from '../interface';
 import { useAppSelector } from '../store/hooks';
 import {
   getSelectedAccount,
   getDebt,
 } from '../store/selectors';
-
-import type { PortalAvailablePayload } from '../interface';
 
 export default function PaymentPanel() {
   const { t } = useTranslation();

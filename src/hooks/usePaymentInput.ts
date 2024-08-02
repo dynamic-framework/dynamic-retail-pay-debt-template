@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from 'react';
 import debounce from 'lodash.debounce';
+import { useEffect, useState, useRef } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getAmountUsed } from '../store/selectors';

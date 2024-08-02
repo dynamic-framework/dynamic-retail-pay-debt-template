@@ -3,10 +3,9 @@ import { useTranslation } from 'react-i18next';
 
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { getAccountToPay, getAmountUsed, getSelectedAccount } from '../../store/selectors';
-
-import { PaymentRepository } from '../repositories';
-import errorHandler from '../../utils/errorHandler';
 import { setIsPaid, setResult } from '../../store/slice';
+import errorHandler from '../../utils/errorHandler';
+import { PaymentRepository } from '../repositories';
 
 export default function usePayLoan() {
   const [loading, setLoading] = useState(false);
