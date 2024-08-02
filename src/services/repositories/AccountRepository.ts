@@ -1,10 +1,9 @@
 import type { GenericAbortSignal } from 'axios';
 
-import ApiClient from '../clients/apiClient';
-import accountMapper from '../mappers/accountMapper';
-
 import type { ApiAccount } from '../api-interface';
+import ApiClient from '../clients/apiClient';
 import { LoanAccount } from '../interface';
+import accountMapper from '../mappers/accountMapper';
 
 export async function list(config: { abortSignal: GenericAbortSignal }) {
   const { data } = await ApiClient.request<Array<ApiAccount>>({

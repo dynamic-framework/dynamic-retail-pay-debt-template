@@ -8,8 +8,8 @@ import { DateTime } from 'luxon';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { setSelectedAccount } from '../store/slice';
 import useDepositAccountsEffect from '../services/hooks/useDepositAccountsEffect';
+import type { Account, DepositAccount } from '../services/interface';
 import {
   useAppDispatch,
   useAppSelector,
@@ -19,10 +19,10 @@ import {
   getDebt,
   getSelectedAccount,
 } from '../store/selectors';
+import { setSelectedAccount } from '../store/slice';
+
 import PaymentPanel from './PaymentPanel';
 import SkeletonLoader from './SkeletonLoader';
-
-import type { Account, DepositAccount } from '../services/interface';
 
 export default function Payment() {
   const { t } = useTranslation();

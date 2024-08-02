@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import {
   DButton,
   DModal,
@@ -7,14 +6,13 @@ import {
   DModalFooter,
   useDPortalContext,
 } from '@dynamic-framework/ui-react';
-import { useMemo } from 'react';
-
 import type { PortalProps } from '@dynamic-framework/ui-react';
-
-import { getSelectedAccount } from '../store/selectors';
-import { useAppSelector } from '../store/hooks';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import type { PortalAvailablePayload } from '../interface';
+import { useAppSelector } from '../store/hooks';
+import { getSelectedAccount } from '../store/selectors';
 
 export default function ModalAutoDebt(
   {
