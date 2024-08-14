@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useMemo } from 'react';
 import {
   DButton,
   DModal,
@@ -9,16 +8,15 @@ import {
   useFormatCurrency,
   useDPortalContext,
 } from '@dynamic-framework/ui-react';
+import type { PortalProps } from '@dynamic-framework/ui-react';
+import classNames from 'classnames';
+import { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import type { PortalProps } from '@dynamic-framework/ui-react';
-
-import classNames from 'classnames';
+import type { PortalAvailablePayload } from '../interface';
+import usePayLoan from '../services/hooks/usePayLoan';
 import { useAppSelector } from '../store/hooks';
 import { getAmountUsed, getSelectedAccount } from '../store/selectors';
-import usePayLoan from '../services/hooks/usePayLoan';
-
-import type { PortalAvailablePayload } from '../interface';
 
 const KEYS_PAYMENT_MESSAGE: Record<string, string> = {
   minimumOption: 'modal.pay.minimum',

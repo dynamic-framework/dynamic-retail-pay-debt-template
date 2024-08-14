@@ -1,4 +1,3 @@
-import { useTranslation } from 'react-i18next';
 import {
   DButton,
   DModal,
@@ -6,6 +5,7 @@ import {
   DQuickActionButton,
   useDPortalContext,
 } from '@dynamic-framework/ui-react';
+import { useTranslation } from 'react-i18next';
 
 export default function ModalPaymentAlternatives() {
   const { t } = useTranslation();

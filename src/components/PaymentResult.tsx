@@ -6,6 +6,8 @@ import {
 import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
 
+import useScreenshotDownload from '../hooks/useScreenshotDownload';
+import useScreenshotWebShare from '../hooks/useScreenshotWebShare';
 import { useAppSelector } from '../store/hooks';
 import {
   getAccountToPay,
@@ -14,8 +16,6 @@ import {
 } from '../store/selectors';
 import errorHandler from '../utils/errorHandler';
 import WidgetUtils from '../utils/widgetUtils';
-import useScreenshotWebShare from '../hooks/useScreenshotWebShare';
-import useScreenshotDownload from '../hooks/useScreenshotDownload';
 
 export default function PaymentResult() {
   const accountToPay = useAppSelector(getAccountToPay);
@@ -57,7 +57,7 @@ export default function PaymentResult() {
           </div>
           {paymentDone && (
             <>
-              <div className="text-center px-2 py-4 bg-light rounded-1">
+              <div className="text-center px-2 py-4 bg-secondary-soft rounded-1">
                 <p className="text-gray fw-bold fs-3 mb-2">
                   {amountUsedFormatted}
                 </p>
