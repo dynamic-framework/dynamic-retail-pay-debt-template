@@ -21,8 +21,8 @@ import {
 } from '../store/selectors';
 import { setSelectedAccount } from '../store/slice';
 
+import PaymentLoader from './PaymentLoader';
 import PaymentPanel from './PaymentPanel';
-import SkeletonLoader from './SkeletonLoader';
 
 export default function Payment() {
   const { t } = useTranslation();
@@ -48,7 +48,7 @@ export default function Payment() {
   return (
     <div className="p-4 bg-white rounded shadow-sm">
       <h6 className="text-gray-700 fw-bold pb-4">{t('paymentTitle')}</h6>
-      {(!accountToPay || !accounts.length) && <SkeletonLoader />}
+      {(!accountToPay || !accounts.length) && <PaymentLoader />}
       {accountToPay && (
         <>
           <div className="d-flex flex-column gap-2 bg-secondary-soft p-4 mb-4 rounded-1">
