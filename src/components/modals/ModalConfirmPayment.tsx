@@ -13,10 +13,10 @@ import classNames from 'classnames';
 import { useMemo } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 
-import type { PortalAvailablePayload } from '../interface';
-import usePayLoan from '../services/hooks/usePayLoan';
-import { useAppSelector } from '../store/hooks';
-import { getAmountUsed, getSelectedAccount } from '../store/selectors';
+import type { PortalAvailablePayload } from '../../interface';
+import usePayLoan from '../../services/hooks/usePayLoan';
+import { useAppSelector } from '../../store/hooks';
+import { getAmountUsed, getSelectedAccount } from '../../store/selectors';
 
 const KEYS_PAYMENT_MESSAGE: Record<string, string> = {
   minimumOption: 'modal.pay.minimum',
