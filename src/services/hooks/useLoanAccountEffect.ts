@@ -4,6 +4,7 @@ import { useAppDispatch } from '../../store/hooks';
 import { setAccountToPay, setDebt } from '../../store/slice';
 import errorHandler from '../../utils/errorHandler';
 import { AccountRepository } from '../repositories';
+import ApiError from '../utils/ApiError';
 import getAccountIdQueryString from '../utils/getAccountIdQueryString';
 
 export default function useLoanAccountEffect() {
@@ -33,6 +34,8 @@ export default function useLoanAccountEffect() {
 
         setLoading(false);
       } catch (error) {
+        if ((error as ApiError).name === 'CanceledError') return;
+
         errorHandler(error);
       }
     })();

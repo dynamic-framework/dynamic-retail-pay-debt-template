@@ -6,6 +6,7 @@ import { setAccounts, setSelectedAccount } from '../../store/slice';
 import errorHandler from '../../utils/errorHandler';
 import { DepositAccount } from '../interface';
 import { AccountRepository } from '../repositories';
+import ApiError from '../utils/ApiError';
 
 export default function useDepositAccountsEffect() {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,8 @@ export default function useDepositAccountsEffect() {
         dispatch(setAccounts(data as Array<DepositAccount>));
         dispatch(setSelectedAccount(data[0] as DepositAccount));
       } catch (error) {
+        if ((error as ApiError).name === 'CanceledError') return;
+
         errorHandler(error);
       }
     })();
