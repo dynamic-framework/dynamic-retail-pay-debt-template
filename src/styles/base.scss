@@ -11,4 +11,8 @@
     --#{$prefix}quick-action-select-hover-bg: var(--#{$prefix}secondary-100);
     box-shadow: none;
   }
+
+  .modal {
+    --#{$prefix}modal-footer-gap: var(--#{$prefix}ref-spacer-2);
+  }
 }
