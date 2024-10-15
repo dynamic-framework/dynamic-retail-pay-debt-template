@@ -75,9 +75,9 @@
     "payErrorMessage": "We couldn’t complete your payment due to {message}",
     "errorSolution": "Please {solution}",
     "moneyPaid": "Valor pagado",
-    "paidTo": "Destinatario",
-    "transactionId": "Número transacción",
-    "timeDate": "Fecha y hora",
+    "paidTo": "Destinatario: {value}",
+    "transactionId": "Número transacción: {value}",
+    "timeDate": "Fecha y hora: {value}",
     "terms": {
       "text": "Todas tus transacciones son hechas de forma segura.",
       "link": "Términos y condiciones."
