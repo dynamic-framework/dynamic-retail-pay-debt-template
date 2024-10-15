@@ -1,7 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import {
+  DCard,
   DCurrencyText,
-  DInputSelect,
+  DSelect,
   useFormatCurrency,
 } from '@dynamic-framework/ui-react';
 import { DateTime } from 'luxon';
@@ -9,7 +10,7 @@ import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import useDepositAccountsEffect from '../services/hooks/useDepositAccountsEffect';
-import type { Account, DepositAccount } from '../services/interface';
+import type { DepositAccount } from '../services/interface';
 import {
   useAppDispatch,
   useAppSelector,
@@ -21,7 +22,7 @@ import {
 } from '../store/selectors';
 import { setSelectedAccount } from '../store/slice';
 
-import PaymentLoader from './PaymentLoader';
+import PaymentLoader from './loaders/PaymentLoader';
 import PaymentPanel from './PaymentPanel';
 
 export default function Payment() {
@@ -32,13 +33,7 @@ export default function Payment() {
   const accountToPay = useAppSelector(getAccountToPay);
   const debt = useAppSelector(getDebt);
 
-  const {
-    values: [
-      amountAvailable,
-    ],
-  } = useFormatCurrency(
-    selectedAccount?.balanceAvailable || 0,
-  );
+  const { format } = useFormatCurrency();
 
   const dateToPay = useMemo(
     () => accountToPay?.paymentDueSinceDate,
@@ -46,10 +41,11 @@ export default function Payment() {
   );
 
   return (
-    <div className="p-4 bg-white rounded shadow-sm">
-      <h6 className="text-gray-700 fw-bold pb-4">{t('paymentTitle')}</h6>
-      {(!accountToPay || !accounts.length) && <PaymentLoader />}
-      {accountToPay && (
+    <DCard>
+      <DCard.Body>
+        <h6 className="text-gray-700 fw-bold pb-4">{t('paymentTitle')}</h6>
+        {(!accountToPay || !accounts) && <PaymentLoader />}
+        {accountToPay && (
         <>
           <div className="d-flex flex-column gap-2 bg-secondary-soft p-4 mb-4 rounded-1">
             <div className="d-flex justify-content-between">
@@ -68,24 +64,20 @@ export default function Payment() {
               />
             </div>
           </div>
-          <div>
-            <DInputSelect<Account>
-              className="mb-1"
-              id="selectAccount"
-              label={t('payFromLabel')}
-              labelExtractor={({ name, accountNumber }: Account) => `${name} *** ${accountNumber.slice(-3)}`}
-              valueExtractor={({ id }: Account) => id}
-              value={selectedAccount?.id}
-              options={accounts}
-              onChange={(account) => {
-                dispatch(setSelectedAccount(account as DepositAccount));
-              }}
-              hint={t('available', { amount: amountAvailable })}
-            />
-            <PaymentPanel />
-          </div>
+          <DSelect
+            label={t('payFromLabel')}
+            options={accounts}
+            getOptionValue={(account) => account.id}
+            getOptionLabel={({ name, accountNumber }) => `${name} *** ${accountNumber.slice(-3)}`}
+            onChange={(account) => dispatch(setSelectedAccount(account as DepositAccount))}
+            value={selectedAccount}
+            hint={t('available', { amount: format(selectedAccount?.balanceAvailable || 0) })}
+            classNames={{ menu: () => 'mt-2' }}
+          />
+          <PaymentPanel />
         </>
-      )}
-    </div>
+        )}
+      </DCard.Body>
+    </DCard>
   );
 }
