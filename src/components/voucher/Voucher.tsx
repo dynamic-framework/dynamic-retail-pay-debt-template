@@ -1,26 +1,29 @@
 import { DButton, DCard, DIcon } from '@dynamic-framework/ui-react';
-import { PropsWithChildren } from 'react';
+import classNames from 'classnames';
+import { PropsWithChildren, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import useScreenshotDownload from '../hooks/useScreenshotDownload';
-import useScreenshotWebShare from '../hooks/useScreenshotWebShare';
-import errorHandler from '../utils/errorHandler';
+import useScreenshotDownload from '../../hooks/useScreenshotDownload';
+import useScreenshotWebShare from '../../hooks/useScreenshotWebShare';
+import errorHandler from '../../utils/errorHandler';
 
 type Props = PropsWithChildren<{
-  icon?: string;
-  title: string;
-  message: string;
-  translate?: boolean;
   amount?: string;
+  amountDetails?: ReactNode;
+  icon?: string;
+  iconTheme?: string;
+  message: string;
+  title: string;
 }>;
 
 export default function Voucher(
   {
     amount,
+    amountDetails,
     icon = 'check-circle',
+    iconTheme = 'success',
     title,
     message,
-    translate,
     children,
   }: Props,
 ) {
@@ -30,7 +33,7 @@ export default function Voucher(
 
   return (
     <div
-      className="mb-6"
+      className="col-lg-8 mx-auto mb-6"
       ref={(el) => {
         shareRef.current = el;
         downloadRef.current = el;
@@ -42,18 +45,24 @@ export default function Voucher(
             <DIcon
               icon={icon}
               size="var(--bs-ref-spacer-8)"
-              theme="success"
+              theme={iconTheme}
             />
             <div className="text-center">
-              <h3 className="mb-2">{translate ? t(title) : title}</h3>
-              <p className="m-0">{translate ? t(message) : message}</p>
+              <h3 className="mb-2">{title}</h3>
+              <p className="m-0">{message}</p>
             </div>
           </div>
           {amount && (
             <div className="bg-secondary-soft p-2 rounded-2">
-              <p className="text-center text-gray fw-bold fs-3 m-0 p-0">
+              <div
+                className={classNames(
+                  'text-center fw-bold fs-3',
+                  amountDetails ? 'mb-1' : 'm-0',
+                )}
+              >
                 {amount}
-              </p>
+              </div>
+              {amountDetails}
             </div>
           )}
 
@@ -65,14 +74,14 @@ export default function Voucher(
             <DButton
               onClick={() => share().catch(errorHandler)}
               iconEnd="share"
-              text={t('share')}
+              text={t('voucher.share')}
               variant="link"
               size="sm"
             />
             <DButton
               onClick={() => download().catch(errorHandler)}
               iconEnd="download"
-              text={t('download')}
+              text={t('voucher.download')}
               variant="link"
               size="sm"
             />

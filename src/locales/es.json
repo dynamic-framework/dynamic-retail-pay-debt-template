@@ -7,9 +7,7 @@
   "payFromLabel": "Pagar desde",
   "available": "{amount} disponible",
   "noDate": "No hay fecha de pago registrada",
-  "share": "Compartir",
   "paymentNote": "Pago de crédito",
-  "download": "Descargar",
   "currencyInput": {
     "placeholder": "Monto",
     "remainingValid": "{remaining} restante",
@@ -88,5 +86,9 @@
     "countdown": "<p>Didn't you get any code? Resend in {value}</p>",
     "countdownResend": "<p>Didn't you get any code? <button></button></p>",
     "resend": "Resend code"
+  },
+  "voucher": {
+    "share": "Share",
+    "download": "Download"
   }
 }

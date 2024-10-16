@@ -8,8 +8,6 @@
   "available": "{amount} available",
   "noDate": "No payments due",
   "paymentNote": "Loan Repayment",
-  "share": "Share",
-  "download": "Download",
   "currencyInput": {
     "placeholder": "Amount",
     "remainingValid": "{remaining} remaining",
@@ -36,7 +34,8 @@
     "retry": "Retry",
     "otherPayment": "Other payment",
     "authorize": "Authorize",
-    "suspend": "Pause"
+    "suspend": "Pause",
+    "home": "Back to home"
   },
   "modal": {
     "automaticDebt": {
@@ -88,5 +87,9 @@
     "countdown": "<p>Didn't you get any code? Resend in {value}</p>",
     "countdownResend": "<p>Didn't you get any code? <button></button></p>",
     "resend": "Resend code"
+  },
+  "voucher": {
+    "share": "Share",
+    "download": "Download"
   }
 }
