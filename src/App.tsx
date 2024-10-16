@@ -20,9 +20,7 @@ export default function App() {
 
   return (
     <div className="container py-4">
-      <div className="col-lg-8 mx-auto">
-        {!isPaid ? <Payment /> : <PaymentResult />}
-      </div>
+      {!isPaid ? <Payment /> : <PaymentResult />}
     </div>
   );
 }
