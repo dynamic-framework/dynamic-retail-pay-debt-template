@@ -5,7 +5,7 @@ import {
 import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
 
-import { SITE_PATH, SITE_URL } from '../config/widgetConfig';
+import { SITE_PATH, SITE_URL, VARS_FORMAT_DATE_FULL } from '../config/widgetConfig';
 import { useAppSelector } from '../store/hooks';
 import {
   getAccountToPay,
@@ -13,7 +13,7 @@ import {
   getResult,
 } from '../store/selectors';
 
-import Voucher from './Voucher';
+import { Voucher, VoucherDetail } from './voucher';
 
 export default function PaymentResult() {
   const accountToPay = useAppSelector(getAccountToPay);
@@ -36,30 +36,21 @@ export default function PaymentResult() {
       >
         {paymentDone && (
           <div>
-            <p className="m-0">
-              {t(
-                'result.paidTo',
-                {
-                  value: `${accountToPay?.name ?? ''} ${accountToPay?.accountNumber.slice(-3) ?? ''}`,
-                },
-              )}
-            </p>
-            <p className="m-0">
-              {t(
-                'result.transactionId',
-                {
-                  value: result?.repaymentId,
-                },
-              )}
-            </p>
-            <p className="m-0">
-              {t(
-                'result.timeDate',
-                {
-                  value: DateTime.fromISO(result?.date ?? DateTime.now().toISO()).toFormat('MM/dd/yy, hh:mm a'),
-                },
-              )}
-            </p>
+            <VoucherDetail
+              i18nKey="result.paidTo"
+              values={{ value: `${accountToPay?.name ?? ''} ${accountToPay?.accountNumber.slice(-3) ?? ''}` }}
+            />
+            <VoucherDetail
+              i18nKey="result.transactionId"
+              values={{ value: result?.repaymentId }}
+            />
+            <VoucherDetail
+              i18nKey="result.timeDate"
+              values={{
+                value: DateTime
+                  .fromISO(result?.date ?? DateTime.now().toISO()).toFormat(VARS_FORMAT_DATE_FULL),
+              }}
+            />
           </div>
         )}
         {!paymentDone && (
@@ -71,30 +62,21 @@ export default function PaymentResult() {
           </div>
           <hr className="m-0" />
           <div>
-            <p className="m-0">
-              {t(
-                'result.paidTo',
-                {
-                  value: `${accountToPay?.name ?? ''} ${accountToPay?.accountNumber.slice(-3) ?? ''}`,
-                },
-              )}
-            </p>
-            <p className="m-0">
-              {t(
-                'result.transactionId',
-                {
-                  value: result?.repaymentId,
-                },
-              )}
-            </p>
-            <p className="m-0">
-              {t(
-                'result.timeDate',
-                {
-                  value: DateTime.fromISO(result?.date ?? DateTime.now().toISO()!).toFormat('MM/dd/yy, hh:mm a'),
-                },
-              )}
-            </p>
+            <VoucherDetail
+              i18nKey="result.paidTo"
+              values={{ value: `${accountToPay?.name ?? ''} ${accountToPay?.accountNumber.slice(-3) ?? ''}` }}
+            />
+            <VoucherDetail
+              i18nKey="result.transactionId"
+              values={{ value: result?.repaymentId }}
+            />
+            <VoucherDetail
+              i18nKey="result.timeDate"
+              values={{
+                value: DateTime
+                  .fromISO(result?.date ?? DateTime.now().toISO()!).toFormat(VARS_FORMAT_DATE_FULL),
+              }}
+            />
           </div>
         </>
         )}
