@@ -82,5 +82,11 @@
       "text": "All your transactions are safe and fast.",
       "link": "Terms & Conditions."
     }
+  },
+  "otp": {
+    "problems": "<p>Problems with your digital token? <a>Contact us</a></p>",
+    "countdown": "<p>Didn't you get any code? Resend in {value}</p>",
+    "countdownResend": "<p>Didn't you get any code? <button></button></p>",
+    "resend": "Resend code"
   }
 }
