@@ -3,9 +3,10 @@ import classNames from 'classnames';
 import { PropsWithChildren, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import useScreenshotDownload from '../../hooks/useScreenshotDownload';
-import useScreenshotWebShare from '../../hooks/useScreenshotWebShare';
 import errorHandler from '../../utils/errorHandler';
+
+import useScreenshotDownload from './hooks/useScreenshotDownload';
+import useScreenshotWebShare from './hooks/useScreenshotWebShare';
 
 type Props = PropsWithChildren<{
   amount?: string;

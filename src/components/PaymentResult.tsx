@@ -82,7 +82,7 @@ export default function PaymentResult() {
         )}
       </Voucher>
 
-      <div className="d-flex flex-column flex-lg-row justify-content-center align-items-center gap-4">
+      <div className="d-flex flex-column flex-md-row-reverse justify-content-md-center align-items-md-center gap-4">
         {!paymentDone && (
           <DButton
             text={t('button.retry')}
@@ -90,16 +90,16 @@ export default function PaymentResult() {
           />
         )}
         <a
-          className="btn btn-outline-primary"
-          href={`${SITE_URL}`}
-        >
-          {t('button.home')}
-        </a>
-        <a
           className="btn btn-primary"
           href={`${SITE_URL}/${SITE_PATH.PAYMENTS}`}
         >
           {t('button.otherPayment')}
+        </a>
+        <a
+          className="btn btn-outline-primary"
+          href={`${SITE_URL}`}
+        >
+          {t('button.home')}
         </a>
       </div>
     </>
