@@ -7,9 +7,7 @@
   "payFromLabel": "Pagar desde",
   "available": "{amount} disponible",
   "noDate": "No hay fecha de pago registrada",
-  "share": "Compartir",
   "paymentNote": "Pago de crédito",
-  "download": "Descargar",
   "currencyInput": {
     "placeholder": "Monto",
     "remainingValid": "{remaining} restante",
@@ -75,12 +73,22 @@
     "payErrorMessage": "We couldn’t complete your payment due to {message}",
     "errorSolution": "Please {solution}",
     "moneyPaid": "Valor pagado",
-    "paidTo": "Destinatario",
-    "transactionId": "Número transacción",
-    "timeDate": "Fecha y hora",
+    "paidTo": "Destinatario: {value}",
+    "transactionId": "Número transacción: {value}",
+    "timeDate": "Fecha y hora: {value}",
     "terms": {
       "text": "Todas tus transacciones son hechas de forma segura.",
       "link": "Términos y condiciones."
     }
+  },
+  "otp": {
+    "problems": "<p>Problems with your digital token? <a>Contact us</a></p>",
+    "countdown": "<p>Didn't you get any code? Resend in {value}</p>",
+    "countdownResend": "<p>Didn't you get any code? <button></button></p>",
+    "resend": "Resend code"
+  },
+  "voucher": {
+    "share": "Share",
+    "download": "Download"
   }
 }
