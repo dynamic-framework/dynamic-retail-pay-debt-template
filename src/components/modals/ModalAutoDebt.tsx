@@ -1,18 +1,16 @@
 import {
+  DAlert,
   DButton,
   DModal,
-  DModalHeader,
-  DModalBody,
-  DModalFooter,
   useDPortalContext,
 } from '@dynamic-framework/ui-react';
 import type { PortalProps } from '@dynamic-framework/ui-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import type { PortalAvailablePayload } from '../interface';
-import { useAppSelector } from '../store/hooks';
-import { getSelectedAccount } from '../store/selectors';
+import type { PortalAvailablePayload } from '../../interface';
+import { useAppSelector } from '../../store/hooks';
+import { getSelectedAccount } from '../../store/selectors';
 
 export default function ModalAutoDebt(
   {
@@ -29,47 +27,46 @@ export default function ModalAutoDebt(
   return (
     <DModal
       name="modalAutoDebt"
-      centered
       staticBackdrop
-      className="d-block"
+      centered
     >
-      <DModalHeader
+      <DModal.Header
         showCloseButton
         onClose={closePortal}
       >
-        <h4 className="fw-bold">
-          {isActive ? t('modal.automaticDebt.offTitle') : t('modal.automaticDebt.onTitle')}
+        <h4>
+          {isActive
+            ? t('modal.automaticDebt.offTitle')
+            : t('modal.automaticDebt.onTitle')}
         </h4>
-      </DModalHeader>
-      <DModalBody className="pt-0">
-        <div className="bg-gray-soft p-4 rounded-1">
+      </DModal.Header>
+      <DModal.Body className="d-flex flex-column gap-4">
+        <DAlert theme="info">
           {!isActive
             ? <p className="mb-0">{t('modal.automaticDebt.onBody', { accountId })}</p>
             : <p className="mb-0">{t('modal.automaticDebt.offBody', { accountId })}</p>}
-        </div>
-        <div className="mx-6 pt-4">
+        </DAlert>
+
+        <div className="text-center">
           {!isActive
             ? <p className="mb-0">{t('modal.automaticDebt.onAuthorize')}</p>
             : <p className="mb-0">{t('modal.automaticDebt.offAuthorize')}</p>}
         </div>
-      </DModalBody>
-      <DModalFooter>
+      </DModal.Body>
+      <DModal.Footer>
         <DButton
-          className="flex-1 d-grid"
           text={t('button.cancel')}
-          theme="secondary"
           variant="outline"
           onClick={closePortal}
         />
         <DButton
-          className="flex-1 d-grid"
           text={isActive ? t('button.suspend') : t('button.authorize')}
           onClick={() => {
             onAccept(!isActive);
             closePortal();
           }}
         />
-      </DModalFooter>
+      </DModal.Footer>
     </DModal>
   );
 }

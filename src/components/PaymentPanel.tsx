@@ -9,7 +9,7 @@ import {
   DQuickActionSelect,
   DQuickActionSwitch,
 } from '@dynamic-framework/ui-react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import usePaymentInput from '../hooks/usePaymentInput';
@@ -31,6 +31,7 @@ export default function PaymentPanel() {
     amount,
     setAmount,
   } = usePaymentInput(selectedAccount?.balanceAvailable);
+
   const [isAutoDebt, setIsAutoDebt] = useState(false);
   const [shortcut, setShortcut] = useState('');
 
@@ -49,32 +50,48 @@ export default function PaymentPanel() {
     setAmount(amountValue);
   };
 
-  const openToast = (key: string) => {
+  const openToast = useCallback((key: string) => {
     toast(
       {
         title: t(key),
         theme: 'info',
+        soft: true,
       },
       {
         duration: 5000,
       },
     );
-  };
+  }, [t, toast]);
 
-  const handlePaymentClick = () => {
+  const handlePaymentClick = useCallback(() => {
     if (!amount) {
       openToast('toast.required');
-    } else if (amount && amount > debt.totalPayment) {
-      openToast('toast.overpay');
-    } else if (amount && selectedAccount && amount > selectedAccount.balanceAvailable) {
-      openToast('toast.insufficient');
-    } else {
-      openPortal('modalConfirmPayment', {
-        isAutoDebt,
-        paymentType: shortcut,
-      });
+      return;
     }
-  };
+
+    if (amount && amount > debt.totalPayment) {
+      openToast('toast.overpay');
+      return;
+    }
+
+    if (amount && selectedAccount && amount > selectedAccount.balanceAvailable) {
+      openToast('toast.insufficient');
+      return;
+    }
+
+    openPortal('modalConfirmPayment', {
+      isAutoDebt,
+      paymentType: shortcut,
+    });
+  }, [
+    amount,
+    debt.totalPayment,
+    isAutoDebt,
+    openPortal,
+    openToast,
+    selectedAccount,
+    shortcut,
+  ]);
 
   if (!selectedAccount) {
     return null;
