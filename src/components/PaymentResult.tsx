@@ -5,7 +5,11 @@ import {
 import { DateTime } from 'luxon';
 import { useTranslation } from 'react-i18next';
 
-import { SITE_PATH, SITE_URL, VARS_FORMAT_DATE_FULL } from '../config/widgetConfig';
+import {
+  SITE_PATH,
+  SITE_URL,
+  VARS_FORMAT_DATE_FULL,
+} from '../config/widgetConfig';
 import { useAppSelector } from '../store/hooks';
 import {
   getAccountToPay,

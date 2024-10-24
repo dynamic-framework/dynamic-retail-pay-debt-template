@@ -1,4 +1,8 @@
-import { DButton, DCard, DIcon } from '@dynamic-framework/ui-react';
+import {
+  DButton,
+  DCard,
+  DIcon,
+} from '@dynamic-framework/ui-react';
 import classNames from 'classnames';
 import { PropsWithChildren, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
