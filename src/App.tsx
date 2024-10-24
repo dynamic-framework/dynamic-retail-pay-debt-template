@@ -19,7 +19,7 @@ export default function App() {
   useLoanAccountEffect();
 
   return (
-    <div className="container py-4">
+    <div className="container">
       {!isPaid ? <Payment /> : <PaymentResult />}
     </div>
   );
