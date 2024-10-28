@@ -8,8 +8,6 @@
   "available": "{amount} available",
   "noDate": "No payments due",
   "paymentNote": "Loan Repayment",
-  "share": "Share",
-  "download": "Download",
   "currencyInput": {
     "placeholder": "Amount",
     "remainingValid": "{remaining} remaining",
@@ -36,7 +34,8 @@
     "retry": "Retry",
     "otherPayment": "Other payment",
     "authorize": "Authorize",
-    "suspend": "Pause"
+    "suspend": "Pause",
+    "home": "Back to home"
   },
   "modal": {
     "automaticDebt": {
@@ -75,12 +74,22 @@
     "payErrorMessage": "We couldn’t complete your payment due to {message}",
     "errorSolution": "Please {solution}",
     "moneyPaid": "Money paid",
-    "paidTo": "Paid to",
-    "transactionId": "Transaction ID",
-    "timeDate": "Time & Date",
+    "paidTo": "Paid to: {value}",
+    "transactionId": "Transaction ID: {value}",
+    "timeDate": "Time & Date: {value}",
     "terms": {
       "text": "All your transactions are safe and fast.",
       "link": "Terms & Conditions."
     }
+  },
+  "otp": {
+    "problems": "<p>Problems with your digital token? <a>Contact us</a></p>",
+    "countdown": "<p>Didn't you get any code? Resend in {value}</p>",
+    "countdownResend": "<p>Didn't you get any code? <button></button></p>",
+    "resend": "Resend code"
+  },
+  "voucher": {
+    "share": "Share",
+    "download": "Download"
   }
 }

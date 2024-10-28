@@ -11,4 +11,14 @@
     --#{$prefix}quick-action-select-hover-bg: var(--#{$prefix}secondary-100);
     box-shadow: none;
   }
+
+  .modal {
+    --#{$prefix}modal-footer-gap: var(--#{$prefix}ref-spacer-2);
+  }
+
+  @include media-breakpoint-down(sm) {
+    .d-input-pin {
+      --#{$prefix}input-pin-form-control-size: var(--#{$prefix}ref-spacer-12); // 48px
+    }
+  }
 }

@@ -9,6 +9,9 @@ export const VARS_CURRENCY = {
   decimal: liquidParser.parse('{{vars.currency-decimal}}'),
 };
 
+export const VARS_FORMAT_DATE = liquidParser.parse('{{vars.format-date}}');
+export const VARS_FORMAT_DATE_FULL = liquidParser.parse('{{vars.format-date-full}}');
+
 export const SITE_PATH = {
   PAYMENTS: liquidParser.parse('{{vars.payments-path}}'),
 };

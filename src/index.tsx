@@ -10,9 +10,9 @@ import './config/liquidConfig';
 import './config/i18nConfig';
 
 import App from './App';
-import ModalAutoDebt from './components/ModalAutoDebt';
-import ModalConfirmPayment from './components/ModalConfirmPayment';
-import ModalPaymentAlternatives from './components/ModalPaymentAlternatives';
+import ModalAutoDebt from './components/modals/ModalAutoDebt';
+import ModalConfirmPayment from './components/modals/ModalConfirmPayment';
+import ModalPaymentAlternatives from './components/modals/ModalPaymentAlternatives';
 import type { PortalAvailablePayload } from './interface';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
@@ -33,7 +33,7 @@ root.render(
         }}
       >
         <App />
-        <DToastContainer />
+        <DToastContainer position="top-right" />
       </DContextProvider>
     </Provider>
   </StrictMode>,
