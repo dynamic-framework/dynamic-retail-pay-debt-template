@@ -1,4 +1,4 @@
-# Dynamic retail pay debt template - React
+# dynamic-retail-pay-debt-template
 ## Requirements:
 - node@20+
 - npm@10+
@@ -39,21 +39,21 @@ Configure the necessary environment variables in an `.env` file or as part of yo
 # Base URL of your Modyo organization
 MODYO_ACCOUNT_URL=https://my-org.modyo.cloud/
 
-#Either the host or the ID where you will deploy your micro frontend (not both)
+# Either the host or the ID where you will deploy your micro frontend (not both)
 # MODYO_SITE_HOST=my-site
 MODYO_SITE_ID=65
 
 # Token for authorizing the deployment, obtained from Modyo
-TOKEN=gT0ogV43LSy4nV9cYtc_hH0i_rUFa01q-12ptFzoW8
+MODYO_TOKEN=gT0ogV43LSy4nV9cYtc_hH0i_rUFa01q-12ptFzoW8
 
 # Major version of the Modyo platform where the deployment will take place (8 or 9)
-VERSION=9
+MODYO_VERSION=10
 
 # Directory containing the micro frontend bundle
-BUILD_DIRECTORY=build
+MODYO_BUILD_DIRECTORY=build
 
 # Name to identify your Micro Frontend in Modyo
-WIDGET_NAME=dynamic-retail-pay-debt-template
+MODYO_WIDGET_NAME=dynamic-retail-pay-debt-template
 
 # Directive necessary for safely removing some libraries from the liquid parser
 MODYO_DISABLE_LIQUID_REGEX=raw
