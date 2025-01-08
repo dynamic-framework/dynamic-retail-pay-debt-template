@@ -53,7 +53,7 @@ VERSION=9
 BUILD_DIRECTORY=build
 
 # Name to identify your Micro Frontend in Modyo
-WIDGET_NAME=my-project
+WIDGET_NAME=dynamic-retail-pay-debt-template
 
 # Directive necessary for safely removing some libraries from the liquid parser
 MODYO_DISABLE_LIQUID_REGEX=raw
