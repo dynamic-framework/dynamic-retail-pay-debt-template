@@ -15,7 +15,7 @@ import {
 } from 'react';
 import { Trans } from 'react-i18next';
 
-import OtpCountDown from './OtpCountDown';
+import OtpCountdown from './OtpCountdown';
 
 const OTP_LENGTH = 6;
 
@@ -68,7 +68,7 @@ export default function Otp(
             invalid={invalid && otp.length < OTP_LENGTH}
             placeholder="0"
           />
-          <OtpCountDown seconds={15} />
+          <OtpCountdown seconds={15} />
         </div>
         <hr className="m-0" />
         <div
