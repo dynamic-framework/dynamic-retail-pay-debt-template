@@ -18,7 +18,13 @@ export default function useDepositAccountsEffect() {
     (async () => {
       try {
         setLoading(true);
-        const data = await AccountRepository.list({ abortSignal: abortController.signal });
+        const data = await AccountRepository.list(
+          {
+            config: {
+              abortSignal: abortController.signal,
+            },
+          },
+        );
         dispatch(setAccounts(data as Array<DepositAccount>));
         dispatch(setSelectedAccount(data[0] as DepositAccount));
       } catch (error) {

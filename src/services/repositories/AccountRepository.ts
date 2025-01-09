@@ -1,33 +1,36 @@
-import type { GenericAbortSignal } from 'axios';
-
-import type { ApiAccount } from '../api-interface';
+import type { ApiAccount, ApiResponseWrapped } from '../api-interface';
 import ApiClient from '../clients/apiClient';
 import { LoanAccount } from '../interface';
 import accountMapper from '../mappers/accountMapper';
 
-export async function list(config: { abortSignal: GenericAbortSignal }) {
-  const { data } = await ApiClient.request<Array<ApiAccount>>({
-    url: 'accounts',
-    method: 'GET',
-    signal: config.abortSignal,
-    headers: {
-      Prefer: 'code=200, example="CURRENT_ACCOUNT,REGULAR_SAVINGS"',
+import { RepositoryParams } from './repository';
+
+export async function list(
+  params: RepositoryParams,
+) {
+  const { data } = await ApiClient.request<ApiResponseWrapped<ApiAccount[]>>(
+    {
+      url: 'accounts/DEPOSIT',
+      method: 'GET',
+      signal: params.config?.abortSignal,
     },
-  });
-  return data.map((apiAccount: ApiAccount) => accountMapper(apiAccount));
+  );
+
+  return data.content.map((apiAccount: ApiAccount) => accountMapper(apiAccount));
 }
 
 export async function get(
-  accountId: string,
-  config: { abortSignal: GenericAbortSignal },
+  params: RepositoryParams<{
+    accountId: string
+  }>,
 ) {
-  const { data } = await ApiClient.request<ApiAccount>({
-    url: '/loan/account',
+  const { data } = await ApiClient.request<ApiResponseWrapped<ApiAccount>>({
+    url: 'accounts/LOAN/CREDIT_CARD/account',
     method: 'GET',
-    signal: config.abortSignal,
-    headers: {
-      Prefer: `code=200, example=${accountId}`,
+    signal: params.config?.abortSignal,
+    params: {
+      account_id: params.accountId,
     },
   });
-  return accountMapper(data) as LoanAccount;
+  return accountMapper(data.content) as LoanAccount;
 }

@@ -10,27 +10,27 @@ export default function accountMapper(apiAccount: ApiAccount): Account {
 
   const commonProps = {
     id: apiAccount.id,
-    name: apiAccount.nickName,
-    alias: apiAccount.nickName,
-    accountNumber: apiAccount.accountNumber,
-    type: ApiAccountTypeConfig[apiAccount.accountType],
+    name: apiAccount.account_holder_name,
+    alias: apiAccount.account_name,
+    accountNumber: apiAccount.number,
+    type: ApiAccountTypeConfig[apiAccount.group],
   };
 
   if (baseType === AccountBaseType.Loan) {
     return {
       ...commonProps,
       baseType,
-      balanceOwed: apiAccount.loanDetails?.balances.owed as number,
-      due: apiAccount.loanDetails?.due as number,
-      paymentDueSinceDate: apiAccount.paymentDetails?.dueSinceDate as string,
-      balanceRemaining: apiAccount.loanDetails?.balances.remaining as number,
+      balanceOwed: apiAccount.loan?.details.balance.owed as number,
+      due: apiAccount.loan?.details.amount_due as number,
+      paymentDueSinceDate: apiAccount.loan?.dates.due_since as string,
+      balanceRemaining: apiAccount.loan?.details.balance.remaining as number,
     };
   }
 
   return {
     ...commonProps,
     baseType,
-    accountingBalance: apiAccount.accountingBalance,
-    balanceAvailable: apiAccount.depositDetails?.balances.available as number,
+    accountingBalance: apiAccount.deposit?.balance.total as number,
+    balanceAvailable: apiAccount.deposit?.balance.available.total as number,
   };
 }

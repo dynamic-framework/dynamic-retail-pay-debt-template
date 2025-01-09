@@ -21,8 +21,10 @@ export default function useLoanAccountEffect() {
 
         if (accountId) {
           const loanToPay = await AccountRepository.get(
-            accountId,
-            { abortSignal: abortController.signal },
+            {
+              accountId,
+              config: { abortSignal: abortController.signal },
+            },
           );
           const debt = {
             minimumPayment: loanToPay.due || 0,

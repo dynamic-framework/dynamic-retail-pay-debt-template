@@ -16,7 +16,7 @@
     "currency-separator": ".",
     "currency-decimal": ",",
     "payments-path": "#",
-    "api-path": "https://stoplight.io/mocks/modyo/dynamic/204091081",
+    "api-path": "https://dynamic-integration.modyo.be/mocks/online-banking",
     "format-date": "dd/MM/yyyy",
     "format-date-full": "dd/MM/yyyy hh:mm a"
   }

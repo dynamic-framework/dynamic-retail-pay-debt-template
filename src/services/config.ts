@@ -13,29 +13,29 @@ export enum AccountType {
 export const AccountTypeConfig = {
   [AccountType.Checking]: {
     name: 'Checking',
-    theme: 'orange',
+    theme: 'danger',
     icon: 'cash-coin',
   },
   [AccountType.Saving]: {
     name: 'Savings',
-    theme: 'blue',
+    theme: 'info',
     icon: 'piggy-bank',
   },
   [AccountType.CreditCard]: {
     name: 'Credit Cards',
-    theme: 'indigo',
+    theme: 'secondary',
     icon: 'credit-card',
   },
   [AccountType.Loan]: {
     name: 'Loans',
-    theme: 'yellow',
+    theme: 'warning',
     icon: 'cash-stack',
   },
 };
 
 export const ApiAccountTypeConfig = {
-  REGULAR_SAVINGS: AccountType.Saving,
-  CURRENT_ACCOUNT: AccountType.Checking,
+  SAVINGS: AccountType.Saving,
+  CHECKING: AccountType.Checking,
   LOAN: AccountType.Loan,
   CREDIT_CARD: AccountType.CreditCard,
 };
